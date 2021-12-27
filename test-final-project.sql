@@ -38,6 +38,19 @@ CREATE TABLE `products` (
   `product_image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+
+CREATE TABLE `customers` (
+  `id` int(255) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  `address` varchar(400) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `image` varchar(200) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
 --
 -- Indexes for dumped tables
 --
@@ -48,6 +61,10 @@ CREATE TABLE `products` (
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
+  ALTER TABLE `customers`
+  ADD PRIMARY KEY (`id`);
+
+--
 --
 -- AUTO_INCREMENT for dumped tables
 --
@@ -57,6 +74,10 @@ ALTER TABLE `products`
 --
 ALTER TABLE `products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+ALTER TABLE `customers`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -6,7 +6,7 @@ class DAL{
 	 private $servername = "localhost";
 	 private $username="root";
 	 private $password="";
-	 public $dbname="book";
+	 public $dbname="test-final-project";
 
 	
 	//retreive data by sql

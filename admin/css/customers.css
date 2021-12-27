@@ -1,4 +1,4 @@
-﻿
+
 
 /*navbar*/
 .navbar {
@@ -19,7 +19,7 @@
     text-align: center;
     position: fixed;
     right: 30px;
-    top: 20px;
+    top: 10px;
     border-radius: 3px;
     z-index: 3;
     cursor: pointer;
@@ -64,6 +64,10 @@
     color: dimgray;      
               
    }
+   .btnsort{
+    background-color: black;
+    color:white !important ;
+   }
 
 /*title*/
 .title-text {
@@ -91,6 +95,9 @@ form span{
 }
 
 
+ .hideP { 
+     display: none;
+    }
 
 /*table*/
 tr {
@@ -155,4 +162,26 @@ tr img {
 }
 form input:hover {
     opacity: 70%;
+}
+
+/* delete or deactivate modal */
+#myModaldelete  .modal-body {
+    text-align: center !important;
+}
+#myModaldelete{
+    margin-top:220px;
+}
+#myModaldelete .modal-header {
+    background-color:#b41b11;
+}
+#deactivate_product {
+    color: white;
+    background-color:firebrick;
+}
+#delete_product {
+    color: white;
+    background-color: red;
+}
+#cancel_delete {
+    background-image: linear-gradient(black,red);
 }
