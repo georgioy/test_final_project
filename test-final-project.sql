@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `test-final-project`
 --
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+DROP TABLE IF EXISTS `categories`;
+CREATE TABLE IF NOT EXISTS `categories` (
+  `cat_id` int(11) NOT NULL AUTO_INCREMENT,
+  `cat_image` varchar(250) NOT NULL,
+  `cat_name` varchar(70) NOT NULL,
+  `cat_status` int(11) NOT NULL,
+  PRIMARY KEY (`cat_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=95 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`cat_id`, `cat_image`, `cat_name`, `cat_status`) VALUES
+(4, 'http://localhost/fall2022/test_final_project/img/othersCat.png', 'Others', 0),
+(1, 'http://localhost/fall2022/test_final_project/img/ClothingCat.jpg', 'Clothing', 1),
+(3, 'http://localhost/fall2022/test_final_project/img/BagsCat.jfif', 'Bags', 1),
+(2, 'http://localhost/fall2022/test_final_project/img/CatShoes.pk_.jpg-3.jpg', 'Shoes', 1);
 
 -- --------------------------------------------------------
 
