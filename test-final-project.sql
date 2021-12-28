@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 19, 2021 at 10:26 PM
+-- Generation Time: Dec 25, 2021 at 08:08 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -32,11 +32,24 @@ CREATE TABLE `products` (
   `product_name` varchar(255) NOT NULL,
   `product_category` varchar(255) NOT NULL,
   `product_gender` varchar(10) NOT NULL,
-  `product_price` int(11) NOT NULL,
-  `product_sale_rate` int(11) NOT NULL,
+  `product_price` float NOT NULL,
+  `product_final_price` float NOT NULL,
   `product_quantity` int(11) NOT NULL,
-  `product_image` varchar(255) NOT NULL
+  `product_image` varchar(100) NOT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `product_name`, `product_category`, `product_gender`, `product_price`, `product_final_price`, `product_quantity`, `product_image`, `status`) VALUES
+(88, 'white shoes', 'shoes', 'female', 50, 25, 15, 'OIP6.jpg', 1),
+(92, 'Bag', 'bags', 'male', 50, 25, 11, 'OIP9.jpg', 1),
+(94, 'white ', 'clothing', 'male', 20, 17, 50, 'OIP2.jpg', 0),
+(95, 'white', 'clothing', 'male', 117, 93.6, 10, 'OIP3.jpg', 0),
+(97, 'white shoes', 'shoes', 'female', 100, 50, 15, 'OIP7.jpg', 1),
+(98, 'wristwatch gold', 'others', 'female', 500, 375, 50, 'OIP11.jpg', 1);
 
 --
 -- Indexes for dumped tables
@@ -56,7 +69,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

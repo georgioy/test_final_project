@@ -2,8 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\admin",
-    "\\admin\\js"
+    "\\admin\\js",
+    "\\admin\\ws",
+    "\\bootstrap",
+    "\\bootstrap\\js"
   ],
-  "SelectedNode": "\\admin\\Admin_Products.php",
+  "SelectedNode": "\\admin\\js\\products.js",
   "PreviewInSolutionExplorer": false
 }
