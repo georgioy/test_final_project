@@ -26,10 +26,10 @@
             <div class="collapse navbar-collapse mt-3">
                 <ul class="navbar-nav ">
                     <li class="">
-                        <a class="nav-link" href="products.php"><span class="navbar-brand">Products</span></a>
+                        <a class="nav-link" href="Products.php"><span class="navbar-brand">Products</span></a>
                     </li>
                     <li class="">
-                        <a class="nav-link" href="categories.php"><span class="navbar-brand">Categories</span></a>
+                        <a class="nav-link" href="Categories.php"><span class="navbar-brand">Categories</span></a>
                     </li>
                 </ul>
             </div>
@@ -38,7 +38,7 @@
             <div id="sideNav">
                 <nav>
                     <ul class="mt5">
-                        <li><a href="customers.php">CUSTOMERS</a></li>
+                        <li><a href="Customers.php">CUSTOMERS</a></li>
                         <li><a href="#">ORDERED</a></li>
                         <li><a href="#">STOCK</a></li>
                         <li><a href="#">REPORTS</a></li>
