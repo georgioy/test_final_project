@@ -257,7 +257,7 @@ $(document).ready(function () {
             var product_status = response[i].status;
 
             var item = "<tr id='" + id + "'>";
-            item += "<td data-target='product_image'>" + " <img id='image" + id + "' src='http://localhost/practices/test_final_project/product_image/" + product_image + "' />" + "</td>";
+            item += "<td data-target='product_image'>" + " <img id='image" + id + "' src='http://localhost/final1/f1/test_final_project/product_image/" + product_image + "' />" + "</td>";
             item += "<td data-target='product_name'>" + product_name + "</td>";
             item += "<td data-target='product_category'>" + product_category + "</td>";
             item += "<td data-target='product_gender'>" + product_gender + "</td>";
@@ -334,7 +334,7 @@ $(document).ready(function () {
             cache: false,
             success: function (response) {
 
-                $('#image' + id).attr("src", "http://localhost/practices/test_final_project/product_image/" + product_image);
+                $('#image' + id).attr("src", "http://localhost/final1/f1/test_final_project/product_image/" + product_image);
                 $('#' + id).children('td[data-target=product_name]').text(product_name);
                 $('#' + id).children('td[data-target=product_category]').text(product_category);
                 $('#' + id).children('td[data-target=product_gender]').text(product_gender);

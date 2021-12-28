@@ -22,7 +22,7 @@
             <div class="collapse navbar-collapse mt-3">
                 <ul class="navbar-nav ">
                     <li class="">
-                        <a class="nav-link" href="Admin_Products.php"><span class="navbar-brand">Products</span></a>
+                        <a class="nav-link" href="products.php"><span class="navbar-brand">Products</span></a>
                     </li>
                     <li class="">
                         <a class="nav-link" href="categories.php"><span class="navbar-brand">Categories</span></a>
