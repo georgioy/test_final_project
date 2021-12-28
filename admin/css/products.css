@@ -155,17 +155,16 @@ box-shadow: none;
     color: green;
 }
 /*modal*/
-<<<<<<< HEAD
+
 .modal {
     margin-top: 200px;
     width: 500px;
     height: 1000px;
-=======
-.modal{
-    margin-top:50px;
-    width:500px;
-    height:1000px;
->>>>>>> 4bb516e21954418a32d023dc950bb8b37872d3dc
+}
+.modal {
+    margin-top: 50px;
+    width: 500px;
+    height: 1000px;
 }
 .modal-header {
     background-color:black ;
