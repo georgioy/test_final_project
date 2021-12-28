@@ -39,6 +39,19 @@ CREATE TABLE `products` (
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+
+CREATE TABLE `customers` (
+  `id` int(255) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  `address` varchar(400) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `image` varchar(200) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
 --
 -- Dumping data for table `products`
 --
@@ -61,6 +74,10 @@ INSERT INTO `products` (`id`, `product_name`, `product_category`, `product_gende
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
+  ALTER TABLE `customers`
+  ADD PRIMARY KEY (`id`);
+
+--
 --
 -- AUTO_INCREMENT for dumped tables
 --
@@ -70,6 +87,10 @@ ALTER TABLE `products`
 --
 ALTER TABLE `products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+COMMIT;
+
+ALTER TABLE `customers`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

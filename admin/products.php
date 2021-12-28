@@ -33,11 +33,15 @@
                     </li>
                 </ul>
             </div>
+<<<<<<< HEAD:admin/products.php
 
+=======
+            <!-- side Nav -->
+>>>>>>> 4bb516e21954418a32d023dc950bb8b37872d3dc:admin/Admin_Products.php
             <div id="sideNav">
                 <nav>
                     <ul class="mt5">
-                        <li><a href="#">CUSTOMERS</a></li>
+                        <li><a href="customers.php">CUSTOMERS</a></li>
                         <li><a href="#">ORDERED</a></li>
                         <li><a href="#">STOCK</a></li>
                         <li><a href="#">REPORTS</a></li>
