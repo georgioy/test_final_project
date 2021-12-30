@@ -22,11 +22,7 @@
             <div class="collapse navbar-collapse mt-3">
                 <ul class="navbar-nav ">
                     <li class="">
-<<<<<<< HEAD
-                        <a class="nav-link" href="products.php"><span class="navbar-brand">Products</span></a>
-=======
-                        <a class="nav-link" href="Products.php"><span class="navbar-brand">Products</span></a>
->>>>>>> 7a3f91ec959387d44a9e8bdefb2747c842a9b721
+                          <a class="nav-link" href="Products.php"><span class="navbar-brand">Products</span></a>
                     </li>
                     <li class="">
                         <a class="nav-link" href="categories.php"><span class="navbar-brand">Categories</span></a>
@@ -62,8 +58,8 @@
                 <span class="font-weight-bold">Search by: </span>
                 <select class="select form-control filter" id="filterBy">
                     <option disabled selected>select to search</option>
-                     <option value="all">All</option>
-                     <option value="male">Male</option> 
+                    <option value="all">All</option>
+                    <option value="male">Male</option> 
                     <option value="female">Female</option> 
                     <option value="kids">Kids</option> 
 
@@ -72,12 +68,7 @@
                 <input id="insearch"   class="form-control mr-sm-2 ml-10" type="text" placeholder="Search" aria-label="Search">
  
             </div>
- 
 
-                <!-- <div class="mr-3 ">
-                    <a class="  btn     btnsort" id="btnsort" onclick="sortTable()">Sort by name</a>
-                </div> -->
-               
            
         </form>
     </div>

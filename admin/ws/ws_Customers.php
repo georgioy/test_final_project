@@ -24,7 +24,7 @@ switch ($op) {
 
 		break;
 		
-	////search for user by name
+	////search for user by name(not used)
 	case 2:
 	 
 			$username = $_GET['uname'];

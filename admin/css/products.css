@@ -159,7 +159,7 @@ tr img {
 }
 /*modal*/
 .modal {
-    margin-top: 200px;
+    margin-top: 5%;
     width: 500px;
     height: 1000px;
 }
@@ -221,7 +221,7 @@ form input:hover {
 }
 
 #myModaldelete {
-    margin-top: 400px;
+    margin-top: 10% !important;
 }
 
     #myModaldelete .modal-header {
