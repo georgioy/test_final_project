@@ -62,7 +62,7 @@
     <div class="setting">
         <form class="form-inline justify-content-center">
             <div class="card-body mt-3">
-                <input type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModal" value="Add Product">
+                <input type="button" id="add_modal" class="btn" data-bs-toggle="modal" data-bs-target="#myModal" value="Add Product">
                 <span class="font-weight-bold">Filter by: </span>
                 <select class="select form-control" id="select_filter">
                     <option value="name">All</option>

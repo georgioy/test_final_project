@@ -165,13 +165,19 @@ $(document).ready(function () {
 
         updateproduct(id, product_name, product_category, product_gender, product_quantity, product_price, product_final_price, product_image);
         $("#myModal").modal('toggle');
-
+        
         return false;
         
     });
 
-  
 
+        
+    $(document).on('click', '#add_modal', function () {
+    $('#dit_image').hide();
+    $('#product_image').show();
+});
+    
+    
     //when hide modal//////////////////////
     $("#myModal").on('hidden.bs.modal', function () {
         $('#p0').hide();
@@ -185,12 +191,12 @@ $(document).ready(function () {
         $('#Update_product').hide();
         $('#cancel_p').hide();
         $('#submit_product').show();
-
+        $('#edit_image').hide();
     });
     $("#myModal").on('submit', function () {
         return false;
     });
-
+    
     // search in table
     $(document).ready(function () {
         $("#insearch").on("keyup", function () {
@@ -257,7 +263,15 @@ $(document).ready(function () {
             var product_status = response[i].status;
 
             var item = "<tr id='" + id + "'>";
+<<<<<<< HEAD
             item += "<td data-target='product_image'>" + " <img id='image" + id + "' src='../product_image/" + product_image + "' />" + "</td>";
+=======
+
+            item += "<td data-target='product_image'>" + " <img id='image" + id + "' src='../product_image/" + product_image + "' />" + "</td>";
+
+            item += "<td data-target='product_image'>" + " <img id='image" + id + "' src='http://localhost/final1/f1/test_final_project/product_image/" + product_image + "' />" + "</td>";
+
+>>>>>>> f0d3b3297229a69ae747751d27fd5b04d2c2d9ac
             item += "<td data-target='product_name'>" + product_name + "</td>";
             item += "<td data-target='product_category'>" + product_category + "</td>";
             item += "<td data-target='product_gender'>" + product_gender + "</td>";
@@ -334,7 +348,15 @@ $(document).ready(function () {
             cache: false,
             success: function (response) {
 
+<<<<<<< HEAD
                 $('#image' + id).attr("src", "../product_image/" + product_image);
+=======
+
+                $('#image' + id).attr("src", "../product_image/" + product_image);
+
+                $('#image' + id).attr("src", "http://localhost/final1/f1/test_final_project/product_image/" + product_image);
+
+>>>>>>> f0d3b3297229a69ae747751d27fd5b04d2c2d9ac
                 $('#' + id).children('td[data-target=product_name]').text(product_name);
                 $('#' + id).children('td[data-target=product_category]').text(product_category);
                 $('#' + id).children('td[data-target=product_gender]').text(product_gender);
