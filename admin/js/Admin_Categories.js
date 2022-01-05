@@ -132,7 +132,7 @@ $(document).ready(function(){
 		 $.each(data, function(index, row) {			   
 			 			   
 			  item="<tr id='tr_"+row.cat_id+"'>";
-			  item+="<td class='edit' data-image='"+row.cat_image+"'><img src='"+row.cat_image+"'></td>";
+			  item+="<td class='edit' data-image='"+row.cat_image+"'><img src='../img/"+row.cat_image+"'></td>";
 			  item+="<td class='edit' data-cname='"+row.cat_name+"' >"+row.cat_name+"</td>";
 			  item+="<td id='Sstatus' class='edit' data-status='"+row.cat_status+"' >"+statusimage(row.cat_status)+"</td>"
 			  item+="<td id='action'><button class='actionbtn btn' data-bs-toggle='modal' data-bs-target='#myModal' id='EDI_"+row.cat_id+"' ><i class='fas fa-edit'></i></button> <button class='btn' data-bs-toggle='modal' data-bs-target='#myModaldelete'   ><i class='fas fa-trash' id='DEL_"+row.cat_id+"' ></i></button><button id ='Act_"+row.cat_id+"'  class='activate btn'  ><i class='far fa-check-circle' ></i></button></td>";
@@ -166,12 +166,12 @@ $(document).ready(function(){
    	  
 		var image=$(this).parents("tr").find("td:eq(0)").attr("data-image");
 		var name=$(this).parents("tr").find("td:eq(1)").attr("data-cname");
-   //     var status=$(this).parents("tr").find("td:eq(2)").attr("data-status");
+  
      	
 		
 		$("#editimage").attr("value",""+image);
 		$("#editname").attr("value",""+name);
- //       $("#editstatus").attr("value",""+status);	
+ 
 		
 															
 	    $(document).on('click', '#SUBEDI', function() {
@@ -185,8 +185,8 @@ $(document).ready(function(){
 			 else
 			 {				 
 			 var  val = Eimg.substring(12, Eimg.length);
-			 var image = ("http://localhost/fall2022/test_final_project/img/"+val);
-			 $("#editimage").attr("value",""+image);			 
+			// var image = (Eimg);
+			 $("#editimage").attr("value",""+val);			 
 			 }
 			
 			 var Eimage=$("#editimage").val();
@@ -257,13 +257,13 @@ $(document).ready(function(){
 			 
 			
 			var  res = image.substring(12, image.length);
-			var fin = ("http://localhost/fall2022/test_final_project/img/"+res)
+		//	var fin = ("http://localhost/fall2022/test_final_project/img/"+res)
 		
 			 var name=$("#editname").val();
 		 //    var status = $("#editstatus").val();
 		if( name!="" || status!="" || image!="" )
 		{ 
-			 AddNewData(fin,name,1);
+			 AddNewData(res,name,1);
 			
 		}
 	    else

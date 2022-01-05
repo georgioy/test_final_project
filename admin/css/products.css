@@ -159,7 +159,15 @@ tr img {
 }
 /*modal*/
 .modal {
+<<<<<<< HEAD
     margin-top: 5%;
+=======
+
+   
+
+    margin-top:10%;
+
+>>>>>>> 95a60c9185316fc1bee2b7c3539112e9e6b870cd
     width: 500px;
     height: 1000px;
 }
