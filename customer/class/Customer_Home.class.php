@@ -14,7 +14,7 @@ require_once('../../DAL/DAL.class.php');
  
     //funtcion to get new arrivals
     public function newArrivals(){
-        $sql = "SELECT * FROM products where status=1 ORDER BY id DESC LIMIT 8";
+        $sql = "SELECT * FROM products where status=1 AND product_price=product_final_price ORDER BY id DESC LIMIT 8";
         $db =  new DAL();
         $rows = $db->getData($sql);
         return $rows;
