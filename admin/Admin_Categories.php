@@ -118,9 +118,8 @@
                         </div>
                        
                         <div class="mb-3">
-                            <input type="file" id="chooseimage" /><input type="hidden"  placeholder="image" class="form-control" id="editimage">
-							
-                        </div>
+                            <input type="file" id="chooseimage" /><input type="hidden"  placeholder="image" class="form-control" id="editimage">		
+						</div>
                         <div class="mb-3">
                             <button type="submit" class="addbtn btn" id="OK">Add</button>
 							<button  type="hidden"  class="addbtn btn" id="SUBEDI">Update</button>

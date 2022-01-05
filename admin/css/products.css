@@ -159,11 +159,11 @@ tr img {
 }
 /*modal*/
 .modal {
-<<<<<<< HEAD
-    margin-top: 5%;
-=======
+
+   
+
     margin-top:10%;
->>>>>>> f0d3b3297229a69ae747751d27fd5b04d2c2d9ac
+
     width: 500px;
     height: 1000px;
 }
