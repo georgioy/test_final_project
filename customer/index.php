@@ -1,3 +1,12 @@
+
+  <?php
+
+  require_once("utils2/utils.php");
+  
+  checkSession();
+  ?>
+
+
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -10,8 +19,19 @@
     <script src="..\bootstrap\ajax\jquery.min.js"></script>
     <script src="..\bootstrap\js\bootstrap.min.js"></script>
     <script src="js\home.js"></script>
+
+
+
+    
 </head>
-<body>
+<body> 
+
+     
+       <input type="hidden" class="userHiddenId" id="<?php echo($_GET["uid"]); ?>"   />
+      
+
+
+    
  <header>
      <!-- navbar -->
     <div class="mb-3 container">
@@ -37,39 +57,8 @@
                     
                     </form>
 
-</div>
-                    <!-- <form class="form-inline justify-content-center">
-
-              <div class="menu_div "  >
-                            
-            <ul>
-                <li class="navlink" style="--i: .85s">
-     
-                            <a href="#" class="menudrop_link"> Menu  <i class="fas fa-caret-down" ></i>  </a>
-                            <div class="dropdown">
-                                <ul>
-                                    <li class="dropdown_link">
-                                        <a href="#" >Clothing</a> 
-                                     </li>
-                                    <li class="dropdown_link">
-                                        <a href="#" >Shoes</a>
-                                     </li>
-                                    <li class="dropdown_link">
-                                        <a href="#" >Bags</a> 
-                                    </li>
-                                    <li class="dropdown_link">
-                                        <a href="#" >Others</a> 
-                                    </li>
-                                    <div class="arrow"> </div>
-                                </ul>
-                            </div>
-
-                  </li>
-            </ul>
- 
-       
-                        </div>
-                    </form> -->
+              </div>
+                    
  
           
 
@@ -84,6 +73,7 @@
                     <div class="cartdiv">
                         <i class="fas fa-shopping-cart " id="cartimg"></i>    
                         <a href="#" class="cart_link link"  >Cart</a>
+                        <input type='hidden' class="cartUid" id="<?php echo(checkSession()); ?>"  />
                     </div>
 
                 </div>  
@@ -101,7 +91,7 @@
     </div>
 </header>
 
-<div class="container6">
+<div class="contain6">
   <img src="../img/adidas.jpg" alt="Snow" style="width:100%">
   <button class="btn6">Login</button>
   <button class="btnregister">Register Now</button>
@@ -114,10 +104,85 @@
  
 </div>
 
-           <h1>Sales</h1>
+
+
+    <div>
+    <h1>Sales</h1>
+    </div>
+
+
+
+<section style="background-color: #eee;">
+  <div class="container  py-5">
+    <div class="row mycontainer">
+     
+        
+
+
+    </div>
+  </div>
+
+  <div class="moresales">
+        <button class="ShowMore " style="vertical-align:middle"><span class="spanbtn">View All Sales </span></button>
+        <br>
+  </div>
+
+
+</section>
+
+
+
+
+<div>
+    <div class="middleimgDiv">
+       <img class="middleImage"   style="width:100%" src="../img/tt_copy.jpg"/> 
+    </div>
+</div>
+
+    <div>
+    <h1> New Arrivals</h1>
+    </div>
+
+
+  <!-- new -->
+
+    <div class="row newArrivals" >
+
 
     
-   
+            
+    </div>
+
+    <div class="moreproducts">
+        <br>    <br>
+        <button class="ShowMore " style="vertical-align:middle"><span class="spanbtn">View All Products</span></button>
+        <br>
+  </div>
+ 
+    
+
+
+
+
+   <section style="background-color: #eee;">
+  <!-- display categories -->
+    <div>  
+       <h1> Categories </h1> 
+   </div>
+
+    <div class="container " >
+        <div class="row categoryCards " style="padding-left:20%; ">
+
+               
+                    
+                        
+                        
+        </div>
+    </div>
+
+</section>
+
+
     <script src="..\bootstrap\js\bootstrap.bundle.min.js"></script>
 </body>
 </html>

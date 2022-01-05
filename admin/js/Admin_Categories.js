@@ -394,7 +394,6 @@ $(document).ready(function(){
 	
 	function D_ActivateCat(id,dstatus)
 	{
-		
 	
 		  var	op = 4 ;   
 		  $.ajax({	  
