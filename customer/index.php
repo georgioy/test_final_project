@@ -1,9 +1,7 @@
 
   <?php
 
-  require_once("utils2/utils.php");
-  
-  checkSession();
+  require_once("../Utils/utils.php");
   ?>
 
 
@@ -19,65 +17,45 @@
     <script src="..\bootstrap\ajax\jquery.min.js"></script>
     <script src="..\bootstrap\js\bootstrap.min.js"></script>
     <script src="js\home.js"></script>
-
-
-    <link rel="stylesheet" href="../fontawesome-free-5.15.4-web/css/all.css">
     <link href="css/Cart.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="..\bootstrap\css\bootstrap.min.css" />
-    <script src="..\bootstrap\ajax\jquery.min.js"></script>
-    <script src="..\bootstrap\js\bootstrap.min.js"></script>
-    
+
 </head>
 <body> 
-
-     
-       <input type="hidden" class="userHiddenId" id="<?php echo($_GET["uid"]); ?>"   />
-      
-
-
-    
- <header>
-     <!-- navbar -->
-    <div class="mb-3 container">
+ <!-- navbar -->
+   <div class="mb-3">
         <nav class="navbar navbar-expand-md fixed-top shadow-sm">
-
-        
-            <div class="navbar-brand logo logo-container">
+            <div class="navbar-brand logo">
                 <img src="..\img\logo.jpg" height="65" width="115">
             </div>
+            <div class="collapse navbar-collapse mt-3">
+                <ul class="navbar-nav ">
+                    <li class="">
+                        <a class="nav-link" href="index.php"><span class="navbar-brand">Home</span></a>
+                    </li>
 
-            <div class="setting filterbox">
-                    <form class="form-inline justify-content-center">
-                        <div class=" mt-3">
-                            <span class="filterP" >Filter by: </span>
-                                <select class="select form-control filter" id="filterBy">
-                                    <option disabled selected>select to search</option>
-                                    <option value="clothing">Clothing</option>
-                                    <option value="shoes">Shoes</option> 
-                                    <option value="bags">Bags</option> 
-                                    <option value="others">Others</option> 
-                                </select>
-                        </div>
+                    <div class="dropdown">
+                             <li class="dropbtn">
+							  <a class="nav-link" href="#"><span class="navbar-brand">Categories<i class="fa fa-caret-down"></i> </span></a>
+                              </li>
+                              <div class="dropdown-content">
+                                
+                              </div>
+                       </div> 
                     
-                    </form>
-
-              </div>
-                    
- 
-          
-
-
-           <div class="loginContainer">
+					
+                   </ul>
+				
+				<div class="loginContainer">
                 <div class="login ">
                     <div class="logindiv">
                         <i class="fas fa-user " id="loginimg"></i>
-                        <a href="#" class="login_link link" >Login</a>
+                        <a href="..\login&register\login.php" class="login_link link" >Login</a>
                     </div>
 
                     <div class="cartdiv">
                         <i class="fas fa-shopping-cart " id="cartimg"></i>    
-                        <a href="#" class="cart_link link"  >Cart</a>
-                        <input type='hidden' class="cartUid" id="<?php echo(checkSession()); ?>"  />
+                        <a href="cart.php" class="cart_link link"  >Cart</a>
+                        <input type='hidden' class="cartUid" id=""  />
                     </div>
 
                 </div>  
@@ -88,12 +66,13 @@
                <i class="fas fa-sign-out-alt" id="logoutimg"></i>    
                <a href="#" class="logout_link link"  >Logout</a>
             </div>
-
-
-      </nav>
+				
+				
+            </div>
+   
+        </nav>
 
     </div>
-</header>
 
 <div class="contain6">
   <img src="../img/adidas.jpg" alt="Snow" style="width:100%">
@@ -107,7 +86,7 @@
     <p class="pImg2"> Count down to the New Year Style</p>
  
 </div>
-
+<input type="hidden" class="userHiddenId" value="<?php   checkSessionCustomer(); ?>"  />
 
 
     <div>
@@ -127,7 +106,7 @@
   </div>
 
   <div class="moresales">
-        <button class="ShowMore " style="vertical-align:middle"><span class="spanbtn">View All Sales </span></button>
+        <button class="ShowMore " style="vertical-align:middle;font-size:20px;"><span class="spanbtn">View All Sales </span></button>
         <br>
   </div>
 
@@ -159,7 +138,7 @@
 
     <div class="moreproducts">
         <br>    <br>
-        <button class="ShowMore " style="vertical-align:middle"><span class="spanbtn">View All Products</span></button>
+        <button class="ShowMore " style="vertical-align:middle;font-size:20px;"><span class="spanbtn">View All Products</span></button>
         <br>
   </div>
  

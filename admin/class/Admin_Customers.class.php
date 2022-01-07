@@ -7,7 +7,7 @@ require_once('../../DAL/DAL.class.php');
     public function getAllCustomers()
 	{
 		
-		$sql="Select * from customers  ORDER BY username ASC ";
+		$sql="Select * from customers where user_type = 'customer' ORDER BY username ASC;";
 		
 		$db = new DAL();
 		

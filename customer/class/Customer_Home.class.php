@@ -27,7 +27,15 @@ require_once('../../DAL/DAL.class.php');
         $result = $db->getData($sql);
         return $result;
     }
-   
+    public function GetCattodropdown(){
+			$sql="Select * from categories where cat_status='1' order by cat_id ASC ";
+	    
+		    $db= new DAL();
+		
+		    $rows= $db->getData($sql);
+		
+		    return $rows;	
+           }
     
      
 

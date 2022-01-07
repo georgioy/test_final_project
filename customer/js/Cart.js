@@ -1,7 +1,6 @@
 // JavaScript Document
 
 $(document).ready(function(){
- window.serverURL = "http://localhost/fall2022/test_final_project/Customer/ws/";
 
 getCart();
 	
@@ -25,22 +24,13 @@ getCart();
 		
 	}
 	
-/*	$(document).on('click','[id^="Filter_"]',function(){
-		
-		<img style='width=20px; height=20px;' src ='../img/"+row.cat_image+"' >
-		
-        var itmId = this.id;
-        res = itmId.replace("Filter_", "");
-	      alert(res);
-	});
-*/	
 		function getCatToDropDown()
 	{		
 		var	op = 2;
 		  
 		$.ajax({
 			  type: 'GET',
-			  url: window.serverURL+"ws_cart.php",
+			  url: "./ws/ws_cart.php",
 			  data: ({op:op
 					 }),
 			  
@@ -100,7 +90,7 @@ function parseCart(data)
 		  
 		$.ajax({
 			  type: 'GET',
-			  url: window.serverURL+"ws_cart.php",
+			  url: "./ws/ws_cart.php",
 			  data: ({op:op
 					 }),
 			  

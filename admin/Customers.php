@@ -1,3 +1,13 @@
+<?php
+
+require("../Utils/utils.php");
+
+checkSessionAdmin();
+
+
+?>
+
+
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -12,7 +22,7 @@
     <script src="js\customers.js"></script>
 </head>
 <body>
-    <!-- navbar -->
+     <!-- navbar -->
     <div class="mb-3">
         <nav class="navbar navbar-expand-md fixed-top shadow-sm">
             <div class="navbar-brand logo">
@@ -25,7 +35,7 @@
                           <a class="nav-link" href="Products.php"><span class="navbar-brand">Products</span></a>
                     </li>
                     <li class="">
-                        <a class="nav-link" href="categories.php"><span class="navbar-brand">Categories</span></a>
+                        <a class="nav-link" href="Admin_Categories.php"><span class="navbar-brand">Categories</span></a>
                     </li>
                 </ul>
             </div>
@@ -34,9 +44,9 @@
                     <ul class="mt5">
                         <li><a href="Customers.php">CUSTOMERS</a></li>
                         <li><a href="#">ORDERED</a></li>
-                        <li><a href="#">STOCK</a></li>
-                        <li><a href="#">REPORTS</a></li>
-                        <li><a href="#">LOGOUT</a></li>
+                        <li><a href="#">STATISTICS</a></li>
+                        <li><a href="logins_register.php">LOGIN REGISTER</a></li>
+                        <li><a href="..\login&register\Login.php">LOGOUT</a></li>
                     </ul>
                 </nav>
             </div>
@@ -79,8 +89,9 @@
                 <tr>
                      <th scope="col">Username</th>
                     <th scope="col">Email Address</th>
-                    <th scope="col">Gender</th>
+                    <th scope="col">Phone Number</th>
                     <th scope="col">Address</th>
+
                     <th scope="col">status</th>
                     <th scope="col">Actions</th>
                  </tr>

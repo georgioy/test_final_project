@@ -1,4 +1,6 @@
 
+
+
 $(document).ready(function () {
 
 
@@ -81,6 +83,88 @@ $(document).ready(function () {
     });
 
 
+    //add product to ws//////////////////
+    function addproduct(product_name, product_category, product_gender, product_quantity, product_price, product_final_price, product_image) {
+        var op = 1;
+        $.ajax({
+            type: 'GET',
+            url: "./ws/ws_products.php",
+            data: { op: op, product_name: product_name, product_category: product_category, product_gender: product_gender, product_quantity: product_quantity, product_price: product_price, product_final_price: product_final_price, product_image: product_image },
+            cache: false,
+            success: function (response) {
+
+
+            },
+        });
+    }
+
+
+    //final price for product after discount rate//////////////
+    function calculateFinalPrice(based_price, discount) {
+        var final_price = based_price - (discount * based_price / 100);
+        return final_price;
+    }
+
+    //function get value from ws////////////////
+    function getproducts() {
+        var op = 5;
+        $.ajax({
+            type: 'GET',
+            url: "./ws/ws_products.php",
+            dataType: 'json',
+            data: { op: op/*, add_rows: add_rows*/ },
+            success: function (response) {
+                if (response == -1)
+                    alert("Data couldn't be loaded!");
+                else {
+                    parseproducts(response);
+                }
+            },
+        });
+    }
+
+
+
+    //get values and put it in product table////////////////
+    function parseproducts(response) {
+        var len = response.length;
+        for (var i = 0; i < len; i++) {
+            var id = response[i].id;
+            var product_image = response[i].product_image;
+            var product_name = response[i].product_name;
+            var product_category = response[i].product_category;
+            var product_gender = response[i].product_gender;
+            var product_price = response[i].product_price;
+            var product_final_price = response[i].product_final_price;
+            var product_quantity = response[i].product_quantity;
+            var product_status = response[i].status;
+
+            var item = "<tr id='" + id + "'>";
+
+            item += "<td data-target='product_image'>" + " <img id='image" + id + "' src='../product_image/" + product_image + "' />" + "</td>";
+
+
+
+            item += "<td data-target='product_name'>" + product_name + "</td>";
+            item += "<td data-target='product_category'>" + product_category + "</td>";
+            item += "<td data-target='product_gender'>" + product_gender + "</td>";
+            item += "<td data-target='product_quantity' id='quantity'>" + product_quantity + "</td>";
+            item += "<td data-target='product_price'>" + product_price + "$</td>";
+            item += "<td data-target='product_final_price'>" + product_final_price + "$</td>";
+            item += "<td data-target='product_status'>" + getstautus(product_quantity, product_status); "</td>"
+            item += "<td id='action'><button class='edit btn' id='edit_" + id
+                + "'  data-bs-toggle='modal' role='none' data-bs-target='#myModal'><i class='fas fa-edit'></i></button>"
+                + "<button id='del_" + id + "' data-bs-toggle='modal' data-bs-target='#myModaldelete' class='delete btn'><i class='fas fa-trash'></i></button>"
+                + "<button' id = 'act_" + id + "' class='activate btn'> <i class='far fa-check-circle'></i></button></td>";
+            item += "</tr>";
+
+            $("#productstbody").append(item);
+            $("#last").val(id);
+        }
+    }
+
+
+
     //button edit/////////////////////////////////////
     $(document).on('click', '.edit', function () {
         var id = $(this).attr("id");
@@ -91,6 +175,63 @@ $(document).ready(function () {
         $('#cancel_p').show();
         $('#submit_product').hide();
     });
+
+
+    //function edit data from ws/////////////////
+    function editproduct(id) {
+        var op = 4;
+        $.ajax({
+            type: 'GET',
+            url: "./ws/ws_products.php",
+            dataType: 'json',
+            data: { op: op, id: id },
+            success: function (response) {
+                if (response == -1)
+                    alert("Data couldn't be loaded!");
+                else {
+                    parseEdit(response);
+                }
+            },
+            error: function (xhr, status, errorThrown) {
+
+                alert(status + errorThrown);
+            }
+
+        });
+    }
+
+
+
+    //function to get value from ws and put it in modal////////////////////
+    function parseEdit(response) {
+        var len = response.length;
+        for (var i = 0; i < len; i++) {
+            var id = response[i].id;
+            // var product_image = response[i].product_image;
+            var product_name = response[i].product_name;
+            var product_category = response[i].product_category;
+            var product_gender = response[i].product_gender;
+            var product_price = response[i].product_price;
+            var product_final_price = response[i].product_final_price;
+            var product_quantity = response[i].product_quantity;
+            var product_image = response[i].product_image;
+            var product_status = response[i].status;
+            //calculate discount rate
+            var discount = calculateDiscountRate(product_price, product_final_price);
+            $('#id').val(id);
+            $('#status').val(product_status);
+            $('#product_name').val(product_name);
+            $('#product_category').val(product_category);
+            $('#product_gender').val(product_gender);
+            $('#product_quantity').val(product_quantity);
+            $('#product_price').val(product_price);
+            $('#product_discount').val(discount);
+            $('#product_image').hide();
+            $('#edit_image').show();
+            $('#imageproductname').val(product_image);
+        }
+    }
+
 
 
     //button update//////////////////////////////////
@@ -171,11 +312,56 @@ $(document).ready(function () {
     });
 
 
-        
+    //function to update products in ws///////////////////
+    function status(quantity) {
+        var stat = $("#status").val();
+        if (quantity == 0 || stat == 0) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
+
+    function updateproduct(id, product_name, product_category, product_gender, product_quantity, product_price, product_final_price, product_image) {
+        var op = 2;
+        var st = status(product_quantity);
+        $.ajax({
+            type: 'GET',
+            url: "./ws/ws_products.php",
+            data: { op: op, status: st, id: id, product_name: product_name, product_category: product_category, product_gender: product_gender, product_quantity: product_quantity, product_price: product_price, product_final_price: product_final_price, product_image: product_image },
+            cache: false,
+            success: function (response) {
+
+
+                $('#image' + id).attr("src", "../product_image/" + product_image);
+
+                $('#image' + id).attr("src", "../product_image/" + product_image);
+
+                $('#' + id).children('td[data-target=product_name]').text(product_name);
+                $('#' + id).children('td[data-target=product_category]').text(product_category);
+                $('#' + id).children('td[data-target=product_gender]').text(product_gender);
+                $('#' + id).children('td[data-target=product_quantity]').text(product_quantity);
+                $('#' + id).children('td[data-target=product_price]').text(product_price + '$');
+                $('#' + id).children('td[data-target=product_final_price]').text(product_final_price + '$');
+                $('#' + id).children('td[data-target=product_status]').html(getstautus(product_quantity, st));
+            },
+        });
+
+    }
+
+    //function to calculate discount rate/////////
+    function calculateDiscountRate(based_price, finalprice) {
+        var discount = 100 - (finalprice * 100 / based_price);
+        return discount;
+    }
+
+
+
     $(document).on('click', '#add_modal', function () {
     $('#dit_image').hide();
     $('#product_image').show();
-});
+    });
     
     
     //when hide modal//////////////////////
@@ -227,191 +413,9 @@ $(document).ready(function () {
 
         
     });
+    //
+    $("#add_rows").val(5);
 
-
-    //function get value from ws////////////////
-    function getproducts() {
-        var op = 5;
-        $.ajax({
-            type: 'GET',
-            url: "./ws/ws_products.php",
-            dataType: 'json',
-            data: { op: op },
-            success: function (response) {
-                if (response == -1)
-                    alert("Data couldn't be loaded!");
-                else {
-                    parseproducts(response);
-                }
-            },
-        });
-    }
-
-
-    //get values and put it in product table////////////////
-    function parseproducts(response) {
-        var len = response.length;
-        for (var i = 0; i < len; i++) {
-            var id = response[i].id;
-            var product_image = response[i].product_image;
-            var product_name = response[i].product_name;
-            var product_category = response[i].product_category;
-            var product_gender = response[i].product_gender;
-            var product_price = response[i].product_price;
-            var product_final_price = response[i].product_final_price;
-            var product_quantity = response[i].product_quantity;
-            var product_status = response[i].status;
-
-            var item = "<tr id='" + id + "'>";
-<<<<<<< HEAD
-            item += "<td data-target='product_image'>" + " <img id='image" + id + "' src='../product_image/" + product_image + "' />" + "</td>";
-=======
-
-            item += "<td data-target='product_image'>" + " <img id='image" + id + "' src='../product_image/" + product_image + "' />" + "</td>";
-
-            item += "<td data-target='product_image'>" + " <img id='image" + id + "' src='http://localhost/final1/f1/test_final_project/product_image/" + product_image + "' />" + "</td>";
-
->>>>>>> f0d3b3297229a69ae747751d27fd5b04d2c2d9ac
-            item += "<td data-target='product_name'>" + product_name + "</td>";
-            item += "<td data-target='product_category'>" + product_category + "</td>";
-            item += "<td data-target='product_gender'>" + product_gender + "</td>";
-            item += "<td data-target='product_quantity' id='quantity'>" + product_quantity + "</td>";
-            item += "<td data-target='product_price'>" + product_price + "$</td>";
-            item += "<td data-target='product_final_price'>" + product_final_price + "$</td>";
-            item += "<td data-target='product_status'>" + getstautus(product_quantity, product_status); "</td>"
-            item += "<td id='action'><button class='edit btn' id='edit_" + id
-                + "'  data-bs-toggle='modal' data-bs-target='#myModal'><i class='fas fa-edit'></i></button>"
-                + "<button id='del_" + id + "' data-bs-toggle='modal' data-bs-target='#myModaldelete' class='delete btn'><i class='fas fa-trash'></i></button>"
-                + "<button' id = 'act_" + id + "' class='activate btn'> <i class='far fa-check-circle'></i></button></td>";
-            item += "</tr>";
-
-            $("#productstbody").append(item);
-        }
-    }
-
-
-    //add product to ws//////////////////
-    function addproduct(product_name, product_category, product_gender, product_quantity, product_price, product_final_price, product_image) {
-        var op = 1;
-        $.ajax({
-            type: 'GET',
-            url: "./ws/ws_products.php",
-            data: { op: op, product_name: product_name, product_category: product_category, product_gender: product_gender, product_quantity: product_quantity, product_price: product_price, product_final_price: product_final_price, product_image: product_image },
-            cache: false,
-            success: function (response) {
-
-
-            },
-        });
-    }
-
-
-    //function edit data from ws/////////////////
-    function editproduct(id) {
-        var op = 4;
-        $.ajax({
-            type: 'GET',
-            url: "./ws/ws_products.php",
-            dataType: 'json',
-            data: { op: op, id: id },
-            success: function (response) {
-                if (response == -1)
-                    alert("Data couldn't be loaded!");
-                else {
-                    parseEdit(response);
-                }
-            },
-            error: function (xhr, status, errorThrown) {
-
-                alert(status + errorThrown);
-            }
-
-        });
-    }
-
-    //function to update products in ws///////////////////
-    function status(quantity) {
-        var stat = $("#status").val();
-        if (quantity == 0 || stat == 0) {
-            return 0;
-        } else {
-            return 1;
-        }
-    }
-    function updateproduct(id, product_name, product_category, product_gender, product_quantity, product_price, product_final_price, product_image) {
-        var op = 2;
-        var st = status(product_quantity);
-        $.ajax({
-            type: 'GET',
-            url: "./ws/ws_products.php",
-            data: { op: op,status:st, id: id, product_name: product_name, product_category: product_category, product_gender: product_gender, product_quantity: product_quantity, product_price: product_price, product_final_price: product_final_price, product_image: product_image },
-            cache: false,
-            success: function (response) {
-
-<<<<<<< HEAD
-                $('#image' + id).attr("src", "../product_image/" + product_image);
-=======
-
-                $('#image' + id).attr("src", "../product_image/" + product_image);
-
-                $('#image' + id).attr("src", "http://localhost/final1/f1/test_final_project/product_image/" + product_image);
-
->>>>>>> f0d3b3297229a69ae747751d27fd5b04d2c2d9ac
-                $('#' + id).children('td[data-target=product_name]').text(product_name);
-                $('#' + id).children('td[data-target=product_category]').text(product_category);
-                $('#' + id).children('td[data-target=product_gender]').text(product_gender);
-                $('#' + id).children('td[data-target=product_quantity]').text(product_quantity);
-                $('#' + id).children('td[data-target=product_price]').text(product_price + '$');
-                $('#' + id).children('td[data-target=product_final_price]').text(product_final_price + '$');
-                $('#' + id).children('td[data-target=product_status]').html(getstautus(product_quantity,st));
-            },
-        });
-
-    }
-
-
-    //function to get value from ws and put it in modal////////////////////
-    function parseEdit(response) {
-        var len = response.length;
-        for (var i = 0; i < len; i++) {
-            var id = response[i].id;
-            // var product_image = response[i].product_image;
-            var product_name = response[i].product_name;
-            var product_category = response[i].product_category;
-            var product_gender = response[i].product_gender;
-            var product_price = response[i].product_price;
-            var product_final_price = response[i].product_final_price;
-            var product_quantity = response[i].product_quantity;
-            var product_image = response[i].product_image;
-            var product_status = response[i].status;
-            //calculate discount rate
-            var discount = calculateDiscountRate(product_price, product_final_price);
-            $('#id').val(id);
-            $('#status').val(product_status);
-            $('#product_name').val(product_name);
-            $('#product_category').val(product_category);
-            $('#product_gender').val(product_gender);
-            $('#product_quantity').val(product_quantity);
-            $('#product_price').val(product_price);
-            $('#product_discount').val(discount);
-            $('#product_image').hide();
-            $('#edit_image').show();
-            $('#imageproductname').val(product_image);
-        }
-    }
-
-    //final price for product after discount rate//////////////
-    function calculateFinalPrice(based_price, discount) {
-        var final_price = based_price - (discount * based_price / 100);
-        return final_price;
-    }
-
-
-    //function to calculate discount rate/////////
-    function calculateDiscountRate(based_price, finalprice) {
-        var discount = 100 - (finalprice * 100 / based_price);
-        return discount;
-    }
 
 
     //function to get the status of products
@@ -450,7 +454,6 @@ $(document).ready(function () {
         update_deactivate(id, status);
        
     });
-    //$(".alert").hide();
     ///button deactivate
     $(document).on('click', '#deactivate_product', function () {
         var id = $('#idd').val();
@@ -554,10 +557,12 @@ $(document).ready(function () {
 
     //function get categories from ws
     function getcategories() {
+        var op = 8;
         $.ajax({
             type: 'GET',
             url: "./ws/ws_products.php",
             dataType: 'json',
+            data: {op:op},
             success: function (response) {
                 if (response == -1)
                     alert("Data couldn't be loaded!");
@@ -574,7 +579,7 @@ $(document).ready(function () {
     function parsecategories(response) {
         var len = response.length;
         for (var i = 0; i < len; i++) {
-            var categories_name = response[i].name;
+            var categories_name = response[i].cat_name;
             var item = "<option value='" + categories_name + "'>" + categories_name + "</option>";
 
             $("#select_filter").append(item);
@@ -582,13 +587,8 @@ $(document).ready(function () {
 
         }
     }
-
-
     //call function get data/////////////
     display();
-
     getproducts();
-
     getcategories();
-
 });

@@ -55,7 +55,10 @@
 
 		//get all data
 		case 5:
+				/*$add_rows=$_GET['add_rows'];*/
+
 				$result=$products->getAllproducts();
+				
 				break;
 
 		//deactivate
@@ -83,6 +86,17 @@
 		
 				$result=$products->GetCategories();
 		
+				break;
+		//get all data
+		case 9:
+		
+		
+
+				$more_row=$_GET['more_row'];
+				$last_row=$_GET['last_row'];
+
+				$result=$products->MoreProducts($last_row,$more_row);
+
 				break;
 
 

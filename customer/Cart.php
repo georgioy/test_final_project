@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html>
 <head>
@@ -17,7 +19,7 @@
 <body>
 	
  <!-- navbar -->
-    <div class="mb-3">
+   <div class="mb-3">
         <nav class="navbar navbar-expand-md fixed-top shadow-sm">
             <div class="navbar-brand logo">
                 <img src="..\img\logo.jpg" height="65" width="115">
@@ -25,11 +27,9 @@
             <div class="collapse navbar-collapse mt-3">
                 <ul class="navbar-nav ">
                     <li class="">
-                        <a class="nav-link" href="Products.php"><span class="navbar-brand">Home</span></a>
+                        <a class="nav-link" href="index.php"><span class="navbar-brand">Home</span></a>
                     </li>
-                    <li class="">
-                        <a class="nav-link" href="Categories.php"><span class="navbar-brand">News</span></a>
-                    </li>  
+
                     <div class="dropdown">
                              <li class="dropbtn">
 							  <a class="nav-link" href="#"><span class="navbar-brand">Categories<i class="fa fa-caret-down"></i> </span></a>
@@ -46,12 +46,12 @@
                 <div class="login ">
                     <div class="logindiv">
                         <i class="fas fa-user " id="loginimg"></i>
-                        <a href="#" class="login_link link" >Login</a>
+                        <a href="..\login&register\login.php" class="login_link link" >Login</a>
                     </div>
 
                     <div class="cartdiv">
                         <i class="fas fa-shopping-cart " id="cartimg"></i>    
-                        <a href="#" class="cart_link link"  >Cart</a>
+                        <a href="cart.php" class="cart_link link"  >Cart</a>
                         <input type='hidden' class="cartUid" id=""  />
                     </div>
 
@@ -70,14 +70,13 @@
         </nav>
 
     </div>
+	
+	
+	
+	
+	
+	
 
-	
-	
-	
-	
-	
-	
-	
 	<section class="pt-5 pb-5">
   <div class="container">
     <div class="row w-100">

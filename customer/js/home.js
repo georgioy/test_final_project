@@ -1,16 +1,54 @@
-$(document).ready(function(){
+$(document).ready(function () {
 
-    
-    var x = document.getElementsByClassName("userHiddenId");
 
-     // alert($('.userHiddenId').attr('id'));
-    var userid = $('.userHiddenId').attr('id');
-   // alert(userid);
 
+
+
+    getCatToDropDown();
+
+    // Fill categories list in navbar 
+
+    function parseCatToDropDown(data) {
+
+
+        $.each(data, function (index, row) {
+            var name = $(".dropdown-content").innerHTML = "<a href=''  id='Filter_" + row.cat_id + "'> " + row.cat_name + "</a>";
+            $(".dropdown-content").append(name);
+        });
+
+
+    }
+    function getCatToDropDown() {
+        var op = 9;
+
+        $.ajax({
+            type: 'GET',
+            url: "./ws/ws_customerHome.php",
+            data: ({
+                op: op
+            }),
+
+            dataType: 'json',
+            timeout: 5000,
+            success: function (data, textStatus, xhr) {
+
+                if (data == -1)
+                    alert("Data couldn't be loaded!");
+                else {
+
+
+                    parseCatToDropDown(data);
+                }
+            },
+
+        });
+
+    }
+    var userid = $('.userHiddenId').val();
     senduserID();
     function senduserID(){
-        var id =  userid;
-        //  alert(id);
+        var id = userid;
+
           var op=7;
           $.ajax({
               type: 'GET',
@@ -18,15 +56,8 @@ $(document).ready(function(){
               dataType: 'json',
               data: { op: op, userId: id },
               success: function (response) {
-                  if (response == -1)
-                      alert("Data couldn't be loaded!");
-                  else {
-                     // parseNew(response);
-                  }
               },
-              error: function (xhr, status, errorThrown) {
-                  alert(status + errorThrown);
-              }
+
           });
 
           return false;
@@ -49,9 +80,6 @@ $(document).ready(function(){
                     parseSales(response);
                 }
             },
-            error: function (xhr, status, errorThrown) {
-                alert(status + errorThrown);
-            }
         });
     }
     
@@ -63,15 +91,13 @@ $(document).ready(function(){
         for(var i=0; i<len; i++){
             var id = response[i].id;
             var product_name = response[i].product_name;
-            var product_category = response[i].product_category;
             var product_price = response[i].product_price;
             var product_final_price = response[i].product_final_price;
             var product_image = response[i].product_image;
-            var product_quantity = response[i].product_quantity;
 
 
-            var Pimage = '<a href="#" class="image"  style="http://localhost/final1/f1/test_final_project/product_image/'    + product_image + '"' + '>';
-            Pimage += '<img src="http://localhost/final1/f1/test_final_project/product_image/'    +  product_image + '"' ; 
+            var Pimage = '<a href="#" class="image"  style="width:200px; height:200px; margin-left:25px;"' + '>';
+            Pimage += '<img src="../product_image/'    +  product_image + '"' ; 
             Pimage += '/>';
             Pimage += '</a>'
 
@@ -79,7 +105,6 @@ $(document).ready(function(){
             var addToCart = '<a  id="'+id+'" href="" class="  addtoArray getsale add-to-cart" >';
             addToCart += 'Add To Cart';
             addToCart += '</a>';
-          //  alert(addToCart);
             
             var productName = '<h3 class="title" > ';
             productName += '<a href="" >' + product_name + '</a>';
@@ -108,9 +133,7 @@ $(document).ready(function(){
 
  
         $(document).on('click', '.addtoArray', function(){
-            var id =  $(this).attr("id");
-         //  alert(id);
-           // var op=4;
+            var id = $(this).attr("id");
             var op=8;
             $.ajax({
                 type: 'GET',
@@ -118,15 +141,8 @@ $(document).ready(function(){
                 dataType: 'json',
                 data: { op: op, PId: id },
                 success: function (response) {
-                    if (response == -1)
-                        alert("Data couldn't be loaded!");
-                    else {
-                       // parseNew(response);
-                    }
                 },
-                error: function (xhr, status, errorThrown) {
-                  // alert(status + errorThrown);
-                }
+
             });
 
             return false;
@@ -177,8 +193,8 @@ $(document).ready(function(){
             var product_quantity = response[i].product_quantity;
 
           
-            var Pimage = '<a href="#" class="image"  style="width:200px; height:200px; margin-left:50px;"' + '>';
-            Pimage += '<img src="http://localhost/final1/f1/test_final_project/product_image/'    +  product_image + '"' ; 
+            var Pimage = '<a href="#" class="image"  style="width:200px; height:200px; margin-left:120px;"' + '>';
+            Pimage += '<img src="../product_image/'    +  product_image + '"' ; 
             Pimage += '/>';
             Pimage += '</a>'
 
@@ -186,7 +202,6 @@ $(document).ready(function(){
             var addToCart = '<a  id="'+id+'" href="" class="addarrival addtoArray add-to-cart" >';
             addToCart += 'Add To Cart';
             addToCart += '</a>';
-          //  alert(addToCart);
             
             var productName = '<h3 class="title" > ';
             productName += '<a href="" >' + product_name + '</a>';
@@ -197,8 +212,6 @@ $(document).ready(function(){
 
             
            $(document).on('click', '.add-to-cart', function(){
-           // var id =  $(this).attr("id");
-            // alert(input4id);
              return;            
           });
       
@@ -208,38 +221,6 @@ $(document).ready(function(){
               +'</div></div>';
 
          } 
-
-
-   
-         
-        // $(document).on('click', '.addarrival', function(){
-        //     var id =  $(this).attr("id");
-        //        //alert(id);
-        //     //  var op=5;
-        //     //  var op=8;
-        //       $.ajax({
-        //           type: 'GET',
-        //           url: "./ws/ws_customerHome.php",
-        //           dataType: 'json',
-        //           data: { op: op, PID: id },
-        //           success: function (response) {
-        //               if (response == -1)
-        //                   alert("Data couldn't be loaded!");
-        //               else {
-
-        //             }
-        //           },
-        //           error: function (xhr, status, errorThrown) {
-        //               alert(status + errorThrown);
-        //           }
-        //       });
-  
-        //       return false;
-
-        // });
-
-   
-
     }
 
 });
@@ -251,9 +232,9 @@ $(document).ready(function(){
 
 $(document).ready(function(){
 
-    getNewArrivals();
+    getCategories();
     ////get all customers function
-    function getNewArrivals(){
+    function getCategories(){
         var op=3;
         $.ajax({
             type: 'GET',
@@ -273,107 +254,84 @@ $(document).ready(function(){
         });
     }
     
-    function parseCategories(response){
+    function parseCategories(response) {
         var len = response.length;
         var container = document.querySelector(".categoryCards");
 
 
-        for(var i=0; i<len; i++){
+        for (var i = 0; i < len; i++) {
             var id = response[i].cat_id;
             var cat_name = response[i].cat_name;
             var cat_status = response[i].cat_status;
             var cat_image = response[i].cat_image;
-            
-          
-          var catimage = '<img class="img img-responsive" src="http://localhost/final1/f1/test_final_project/product_image/OIP.jpg"';
-         // catimage += cat_image + '"';
-          catimage += '>';
 
-          
-           // alert(divv);
-           var catLink = '<a  href="" class="stretched-link getcat"   id="'+id+'" >';
-           catLink += '<input type="hidden" class="getcat"    >'
-           catLink += '</a>';
-           
 
-           var catnameDiv = '<div class="profile-name">';
+            var catimage = "<img style='width: 100% ; height: 100%' class='img img-responsive' src='../img/" + cat_image + "'\>";
+
+
+            // alert(divv);
+            var catLink = '<a  href="" class="stretched-link getcat"   id="' + id + '" >';
+            catLink += '<input type="hidden" class="getcat"    >'
+            catLink += '</a>';
+
+
+            var catnameDiv = '<div style:"color:black;" class="profile-name">';
             catnameDiv += cat_name;
             catnameDiv += '</div>';
 
-        
 
-            
-            var divv = '<div class="profile-card-6">';
+
+
+            var divv = '<div class="profile-card-6" style:"width: 900px ; height: 700px ">';
             divv += catimage;
-            divv +=  catnameDiv;
+            divv += catnameDiv;
             divv += catLink;
             divv += '</div>';
 
 
-            if( i%2 == 1){
-                container.innerHTML += '<div class=" col-md-4" style="padding-left:4%;">'+  
-                divv  
-                +'</div> ' + '<div class="col-xl-12 "></div>';  
-            }else{
-                 container.innerHTML += '<div class="col-md-4"  style="padding-left:4%;" >'+  
-                 divv  
-                 +'</div> ';  
+            if (i % 2 == 1) {
+                container.innerHTML += '<div class=" col-md-4" style="padding-left:4%;">' +
+                    divv
+                    + '</div> ' + '<div class="col-xl-12 "></div>';
+            } else {
+                container.innerHTML += '<div class="col-md-4"  style="padding-left:4%;" >' +
+                    divv
+                    + '</div> ';
             }
-           
-         } 
-         $(document).on('click', '.getcat', function(){
-            var id =  $(this).attr("id");
-              // alert(id);
-              var op=6;
-              $.ajax({
-                  type: 'GET',
-                  url: "./ws/ws_customerHome.php",
-                  dataType: 'json',
-                  data: { op: op, catID: id },
-                  success: function (response) {
-                      if (response == -1)
-                          alert("Data couldn't be loaded!");
-                      else {
-                         // parseNew(response);
-                        }
-                  },
-                  error: function (xhr, status, errorThrown) {
-                      alert(status + errorThrown);
-                  }
-              });
-  
-              return false;
 
-        });
-
-
+        }
     }
 
-});
+}); 
 
-   $(document).ready(function(){
+$(document).ready(function(){
     $(document).on('click', '.cartdiv', function(){
  
-        
-        var userid = $('.cartUid').attr('id');
-        if(userid){
-            alert(userid);
-            //logged in -> redirect to user cart page
-             // window.location = "https://www.google.com";
 
-        }else{
-            alert("not logged in");
-            //not logged in -> go to login page
-           // window.location = "https://www.google.com";
+        var userid = $('.userHiddenId').val();
+        alert(userid);
+        if (userid == "") {
+            $('.userHiddenId').val() = '';
+             window.location.href = "../login&register/Login.php";
+            
+            
+        } else {
+           window.location.href = "../customer/cart.php";
         }
-
-     
-       
-
-
     });
 
-   });
+
+
+
+       $(document).on('click', '.btn6', function () {
+           window.location.href = "../login&register/Login.php";
+
+       });
+       $(document).on('click', '.btnregister', function () {
+           window.location.href = "../login&register/Register.php";
+
+       });
+});
 
 
 

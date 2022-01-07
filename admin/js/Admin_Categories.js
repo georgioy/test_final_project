@@ -1,19 +1,8 @@
 // JavaScript Document
 $(document).ready(function(){
 	
-//	 <div class="mb-3">
-             //             <input type="number"  placeholder="Status" class="form-control" id="editstatus">
-              //          </div>
-	
-	 window.serverURL = "http://localhost/fall2022/test_final_project/admin/ws/";
-	
-	
+
 	getCategories();
-	//	$("#sea").click(function(){
-		
-		//	var name = $("#txtSearch").val();
-		  
-		//	getCategories(name); 
 		
 		$("#txtSearch").show();
 		$("#txtSearch").keyup(function(){
@@ -49,7 +38,7 @@ $(document).ready(function(){
 		  
 		$.ajax({
 			  type: 'GET',
-			  url: window.serverURL+"ws_Admin_Categories.php",
+			  url: "./ws/ws_Admin_Categories.php",
 			  data: ({status:status,
 					 op:op}),
 			  
@@ -84,7 +73,7 @@ $(document).ready(function(){
 		  
 		$.ajax({
 			  type: 'GET',
-			  url: window.serverURL+"ws_Admin_Categories.php",
+			  url:"./ws/ws_Admin_Categories.php",
 			  data: ({name:name,
 					 op:op}),
 			  
@@ -215,7 +204,7 @@ $(document).ready(function(){
 		   var	op = 3 ;   
 		  $.ajax({	  
 			  type: 'GET',
-			  url: window.serverURL+"ws_Admin_Categories.php",
+			  url: "./ws/ws_Admin_Categories.php",
 			  data: ({
 				    rowid:rowid,
 			        op: op,
@@ -257,10 +246,9 @@ $(document).ready(function(){
 			 
 			
 			var  res = image.substring(12, image.length);
-		//	var fin = ("http://localhost/fall2022/test_final_project/img/"+res)
 		
 			 var name=$("#editname").val();
-		 //    var status = $("#editstatus").val();
+
 		if( name!="" || status!="" || image!="" )
 		{ 
 			 AddNewData(res,name,1);
@@ -353,7 +341,7 @@ $(document).ready(function(){
 		  var	op = 6 ;   
 		  $.ajax({	  
 			  type: 'GET',
-			  url: window.serverURL+"ws_Admin_Categories.php",
+			  url: "./ws/ws_Admin_Categories.php",
 			  data: ({
 				    rowid:id,
 			        op: op,
@@ -398,7 +386,7 @@ $(document).ready(function(){
 		  var	op = 4 ;   
 		  $.ajax({	  
 			  type: 'GET',
-			  url: window.serverURL+"ws_Admin_Categories.php",
+			  url: "./ws/ws_Admin_Categories.php",
 			  data: ({
 				    rowid:id,
 			        op: op,

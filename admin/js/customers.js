@@ -22,19 +22,20 @@
             });
         }
         
-        function parseCustomers(response){
+        function parseCustomers(response) {
+            
             var len = response.length;
             for(var i=0; i<len; i++){
                 var id = response[i].id;
                 var username = response[i].username;
                 var email = response[i].email;
                 var address = response[i].address;
-                var gender = response[i].gender;
+                var phone_number = response[i].phone_number;
                 var status = response[i].status;
                 var row = "<tr id='" +id +"'  >";
                 row += "<td>" + username + "</td>";
                 row += "<td>" + email + "</td>";
-                row += "<td>" + gender + "</td>";
+                row += "<td>" + phone_number + "</td>";
                 row += "<td>" + address + "</td>";
                 if(status == 0){
                     row += "<td>" + "<i title='Deactivated' class='fas fa-thumbs-down'></i>" + "</td>";

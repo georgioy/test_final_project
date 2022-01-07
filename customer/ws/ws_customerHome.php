@@ -18,8 +18,7 @@
             case 1:
                 {
                     $result = $customerhome->getSales();
-                    header("Content-type:application/json");
-                    echo json_encode($result);
+
                     break;
                 }
 
@@ -27,8 +26,7 @@
             case 2:
                 {
                     $result = $customerhome->newArrivals();
-                    header("Content-type:application/json");
-                    echo json_encode($result);        
+       
                     break; 			 
                 }
 
@@ -36,8 +34,6 @@
             case 3:
                 {
                     $result = $customerhome->getCategories();
-                    header("Content-type:application/json");
-                    echo json_encode($result);
                     break;
                 }
 
@@ -98,17 +94,21 @@
                              echo json_encode($_SESSION["cart"]);
                              break;
                             }
+                        case 9:{
+			 
+			                 $result=$customerhome->GetCattodropdown();
+			 
+			                 break;
+                        }
            
 
             default:
-                break;
-    
-            
-            
+                break;     
     } 
     
         
-      
+    header("Content-type:application/json");
+    echo json_encode($result);   
        
 
  ?>

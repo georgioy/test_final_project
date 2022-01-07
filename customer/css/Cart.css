@@ -6,7 +6,9 @@
 .navbar {
     background-color: black;
 }
-
+a {
+    color: white;
+}
 .nav-link {
     color: white;
 }
@@ -44,7 +46,7 @@
   display: block;
 }
 
-.dropdown-content a:hover { color: dimgray;;
+.dropdown-content a:hover { color: dimgray;
 text-decoration: none;}
 
 .dropdown:hover .dropdown-content {display: block;}

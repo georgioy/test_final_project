@@ -1,12 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\admin",
-    "\\admin\\js",
-    "\\admin\\ws",
-    "\\bootstrap",
-    "\\bootstrap\\js"
+    "\\customer",
+    "\\customer\\js"
   ],
-  "SelectedNode": "\\admin\\js\\products.js",
+  "SelectedNode": "\\product_image",
   "PreviewInSolutionExplorer": false
 }

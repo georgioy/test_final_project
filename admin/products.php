@@ -1,4 +1,11 @@
+<?php
 
+require("../Utils/utils.php");
+
+checkSessionAdmin();
+
+
+?>
 
 
 <!DOCTYPE html>
@@ -15,41 +22,37 @@
      <script src="..\bootstrap\js\jquery.bootstrap-growl.min.js"></script>
     <script src="js\products.js"></script>
 </head>
-<body>
-    <!-- navbar -->
+ <!-- navbar -->
     <div class="mb-3">
-        <nav id="navbar" class="navbar navbar-expand-md fixed-top shadow-sm">
-            <div id="logo" class="navbar-brand logo">
+        <nav class="navbar navbar-expand-md fixed-top shadow-sm">
+            <div class="navbar-brand logo">
                 <img src="..\img\logo.jpg" height="65" width="115">
             </div>
 
             <div class="collapse navbar-collapse mt-3">
                 <ul class="navbar-nav ">
                     <li class="">
-                        <a class="nav-link" href="Products.php"><span class="navbar-brand">Products</span></a>
+                          <a class="nav-link" href="Products.php"><span class="navbar-brand">Products</span></a>
                     </li>
                     <li class="">
-                        <a class="nav-link" href="Categories.php"><span class="navbar-brand">Categories</span></a>
+                        <a class="nav-link" href="Admin_Categories.php"><span class="navbar-brand">Categories</span></a>
                     </li>
                 </ul>
             </div>
-            <!-- side Nav -->
-
             <div id="sideNav">
                 <nav>
                     <ul class="mt5">
                         <li><a href="Customers.php">CUSTOMERS</a></li>
                         <li><a href="#">ORDERED</a></li>
-                        <li><a href="#">STOCK</a></li>
-                        <li><a href="#">REPORTS</a></li>
-                        <li><a href="#">LOGOUT</a></li>
+                        <li><a href="#">STATISTICS</a></li>
+                        <li><a href="logins_register.php">LOGIN REGISTER</a></li>
+                        <li><a href="..\login&register\Login.php">LOGOUT</a></li>
                     </ul>
                 </nav>
             </div>
             <div class="mt-3" id="menubtn">
                 <img src="..\img/menu.png" id="menu" />
             </div>
-
         </nav>
 
     </div>
@@ -100,6 +103,15 @@
             </tbody>
         </table>
     </div>
+
+    <center class="mb-5 view_more"><button id="load_more" class="btn" style="color:#1d1c1c;box-shadow: none;">View More <i class="fa fa-angle-double-right" ></i></button>  </center>
+    <div id="down">
+        <input type="hidden" id="all" value="">
+    <input type="hidden" id="add_rows" value="">
+    </div>
+
+
+
    <!-- modal -->
    <div class="modal" id="myModal">
         <div class="modal-dialog">
@@ -121,10 +133,6 @@
                         <div class="mb-3">
                             <select class="select form-control " placeholder="select category" id="product_category" >
                                 <option value="">select category</option>
-                                <option value="shoes">shoes</option>
-                                <option value="clothing">clothing</option>
-                                <option value="bags">bags</option>
-                                <option value="others">others</option>
 
                             </select>
                             <p class="text-left text-danger mt-2" id="p1"></p>
