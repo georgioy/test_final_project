@@ -82,7 +82,7 @@
 			return $rows;
 		}
 		public function GetCategories(){
-			$sql="select name from categories";
+			$sql="select cat_name from categories";
 		
 			$db = new DAL();
 		
