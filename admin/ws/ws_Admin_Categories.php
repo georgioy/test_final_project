@@ -58,20 +58,30 @@
 		 {
 			$status=$_GET["status"];
 			 
-			 $cat = new Admin_Categories() ;
+			$cat = new Admin_Categories() ;
 
-             $result=$cat->GetCatbystatus($status);
+            $result=$cat->GetCatbystatus($status);
 			
-			 break;
+			break;
 		 }
    case 6:
 		 {
 			$id=$_GET["rowid"];
 			 
-			 $cat = new Admin_Categories() ;
+			$cat = new Admin_Categories() ;
 
-             $result=$cat->deleteCatbyid($id);
+            $result=$cat->deleteCatbyid($id);
 			
+			break;
+		 }
+	 case 7:
+		 {
+			$catname=$_GET["catname"];
+			 
+			 $cat = new Admin_Categories() ;
+			 
+			 $result=$cat->CheckIfCategoryHasItems($catname);
+			 
 			 break;
 		 }
 		 

@@ -124,7 +124,7 @@ $(document).ready(function(){
 			  item+="<td class='edit' data-image='"+row.cat_image+"'><img src='../img/"+row.cat_image+"'></td>";
 			  item+="<td class='edit' data-cname='"+row.cat_name+"' >"+row.cat_name+"</td>";
 			  item+="<td id='Sstatus' class='edit' data-status='"+row.cat_status+"' >"+statusimage(row.cat_status)+"</td>"
-			  item+="<td id='action'><button class='actionbtn btn' data-bs-toggle='modal' data-bs-target='#myModal' id='EDI_"+row.cat_id+"' ><i class='fas fa-edit'></i></button> <button class='btn' data-bs-toggle='modal' data-bs-target='#myModaldelete'   ><i class='fas fa-trash' id='DEL_"+row.cat_id+"' ></i></button><button id ='Act_"+row.cat_id+"'  class='activate btn'  ><i class='far fa-check-circle' ></i></button></td>";
+			  item+="<td id='action'><button class='actionbtn btn' data-bs-toggle='modal' data-bs-target='#myModal' id='EDI_"+row.cat_id+"' ><i class='fas fa-edit'></i></button> <button class='btn' data-bs-toggle='modal' data-bs-target='#myModaldelete'   ><i class='fas fa-trash' id='DEL_"+row.cat_id+"' ></i></button><button id ='Act_"+row.cat_id+"'  class='activate btn'  ><i class='far fa-check-circle' ></i> </td>";
 			  item+="</tr>";		
 			   			 
 			 
@@ -155,6 +155,7 @@ $(document).ready(function(){
    	  
 		var image=$(this).parents("tr").find("td:eq(0)").attr("data-image");
 		var name=$(this).parents("tr").find("td:eq(1)").attr("data-cname");
+		
   
      	
 		
@@ -233,6 +234,9 @@ $(document).ready(function(){
 	//ADD NEW
 	
 	 $(document).on('click', '#ADD', function(){
+		 
+		
+		  	 	 
 		$("#OK").show();
 		$("#SUBEDI").hide();		 
 		$("#CANEDI").hide();		 
@@ -241,11 +245,8 @@ $(document).ready(function(){
 	     $(document).on('click', '#OK', function()  {
 	       
 		     var image=$("#chooseimage").val();  
-		
-			 
-			 
 			
-			var  res = image.substring(12, image.length);
+		  	 var  res = image.substring(12, image.length);
 		
 			 var name=$("#editname").val();
 
@@ -259,6 +260,8 @@ $(document).ready(function(){
 			alert("Please fill in all importent information");	
 	    }
 		 });
+	
+		 
 	 });
          
 	   function AddNewData(image,name,status)
@@ -268,7 +271,7 @@ $(document).ready(function(){
 		   $.ajax({
 			  
 			  type: 'GET',
-			  url: window.serverURL+"ws_Admin_Categories.php",
+			  url: "./ws/ws_Admin_Categories.php",
 			  data: ({
 			        op: op,
 				    image:image,
@@ -307,6 +310,10 @@ $(document).ready(function(){
 			
              del = itmId.replace("DEL_","");
 			 var status=$(this).parents("tr").find("td:eq(2)").attr("data-status");
+			var catname = $(this).parents("tr").find("td:eq(1)").attr("data-cname");
+			
+		
+			
 			
 			$("#deactivate_category").click(function(){
 				
@@ -322,16 +329,35 @@ $(document).ready(function(){
 			 }
 		});
 			
-		$("#delete_category").click(function(){	
-	       	  deleteCat(del);	
+		$(document).on('click','#delete_category',function(){
+	
 			
-	          $(this).remove();
+		
+	//	alert(catname);
+	//		if(CheckBeforeDelete(catname)==0)
+	//		 {
+	//			alert("You can't delete cat");
+	//		 }
+	//	 else
+		//	{
+				  deleteCat(del);	
+			
+	              $(this).remove();
 			       
-		      location.reload();
+		          location.reload();	 
+		  
+				
+		//	}
+		
 			
-		});
 			
+	       
 		});
+				});
+			
+	
+	    
+	
 	
 	
 		function deleteCat(id)
@@ -382,7 +408,6 @@ $(document).ready(function(){
 	
 	function D_ActivateCat(id,dstatus)
 	{
-	
 		  var	op = 4 ;   
 		  $.ajax({	  
 			  type: 'GET',
@@ -406,6 +431,30 @@ $(document).ready(function(){
 			  },
 			 
 		  });  	
+	}
+	function CheckBeforeDelete(catname)
+	{
+		var op = 7;
+		$.ajax({
+			type:'Get',
+			url: "./ws/ws_Admin_Categories.php",
+			 data: ({
+				    catname:catname,
+			        op: op,				 
+				}),
+			  dataType: 'json',
+			  timeout: 5000,
+			  success: function(data, textStatus, xhr) 
+			  {				  
+				  if(data==-1)
+					  alert("Data couldn't be loaded!");
+				  else
+		   {
+					 
+				 //   data = JSON.parse(xhr.responseText);							
+				  }
+			  },			
+		});
 	}
 
 	

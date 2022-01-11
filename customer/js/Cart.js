@@ -2,7 +2,7 @@
 
 $(document).ready(function(){
 
-getCart();
+  getCart();
 	
 	
 			 
@@ -57,15 +57,15 @@ getCart();
 function parseCart(data)
 	{		
 		
-		$("#carttbody").empty();
+		$("#carttbody").empty();	
+		
 		
 		 $.each(data, function(index, row) {			   
 			 			   
-			  item="<tr id='tr_"+row.id+"'>";
+			  item="<tr id='tr_"+row.id+"'  data_id='"+row.id+"' >";
 			  item+="<td data-th='image'><div class='row'><div class='col-md-3 text-left'><img src='../product_image/"+row.product_image+"' alt='' class='' style='width:100px; height:75px;'  ></div></td>";
 			 item+="<td data-th='product name' > <div class='col-md-9 text-left mt-sm-2'><h4>"+row.product_name+"</h4><p class='font-weight-light'>"+row.product_gender+" &amp; Category:"+row.product_category+"</p></div></div>   </td>"
 			  item+="<td data-th='Price' data-price'"+row.product_final_price+"' >"+row.product_final_price+"$</td>";
-		//	  item+="<td data-th='Quantity' align='right' > <div class='divqty'  ><button type='button' class='btn' id='INC'>+</button></div><div class='divqty' ><input type='number' class='form-control form-control-lg text-center' id='qty' value='1'></div><div class='divqty' ><button type='button' class='btn' id='DEC'>-</button></div></td>";
 			  item+="<td  data-th='Quantity'><div class='input-group w-auto justify-content-end align-items-center'><input id='DEC' type='button' value='-' class='button-minus border rounded-circle  icon-shape icon-sm  ' data-field='quantity'><input type='number' id='qty' step='1' max='10' value='1' name='quantity' class='quantity-field border-0 text-center w-25 p-0'> <input type='button' id='INC' value='+' class='button-plus border rounded-circle icon-shape icon-sm  mx -1 ' data-field='quantity'></div></td>"
 			 
 			 
@@ -86,7 +86,7 @@ function parseCart(data)
 	// adding content of cart
 	function getCart()
 	{		
-		var	op = 1 ;
+		var	op = 8;
 		  
 		$.ajax({
 			  type: 'GET',
@@ -107,16 +107,12 @@ function parseCart(data)
 					
 					  parseCart(data);
 				      CalculateTotal();
-					  
-					  
+					  parseCart(data);
+		
 					 change_num_items();
 				  }
 			  },
-			  error: function(xhr, status, errorThrown) 
-			  {
-				 			  
-				  alert(status + errorThrown);				  
-			  }
+			
 		  });  	
 
 	}
@@ -170,6 +166,10 @@ function parseCart(data)
 		 });
 	
 	
+	
+	
+	
+	
 	// Decrement quantity
 	
 	 $(document).on('click', '#DEC', function() 
@@ -182,7 +182,7 @@ function parseCart(data)
 		   if(QTY<1)
 			   {
 				   $(this).parents("tr").remove();
-				   
+				  
 			   }
 		      
 		 $(document).on("change, keyup, focus" ,CalculateTotal(),change_num_items());
@@ -204,7 +204,6 @@ function parseCart(data)
 			
 	           $(document).on("change, keyup, focus" ,"#qty",CalculateTotal(),change_num_items());
 			   
-		
 			
 		});
 		
@@ -215,8 +214,72 @@ function parseCart(data)
 	function  change_num_items()
 	{
 		var rowCount = 0;
+	
 		rowCount = $("#shoppingCart tbody").children().length; 
         $("#num_items").text(+rowCount+"  items in your cart");
+		
+		
 			
 	}
+	
+	function PlaceOrder(product_id,product_quantity)
+	
+	{
+		var	op = 3;
+		  
+		$.ajax({
+			  type: 'GET',
+			  url: "./ws/ws_cart.php",
+			  data: ({op:op,
+					  product_id:product_id ,
+	                  product_quantity:product_quantity,  
+					 }),
+			  
+			  dataType: 'json',
+			  timeout: 5000,
+			  success: function(data, textStatus, xhr) 
+			  {				  
+		  		 
+				  if(data==-1)
+					  alert("Data couldn't be loaded!");
+				  else{
+					 
+				    data = JSON.parse(xhr.responseText);					
+					
+					
+				  }
+			  },
+			
+		  });  	
+		
+	}
+	
+	
+	 $(document).on('click', '#Order', function(){ 
+		 
+		  $("#num_items").text("Your order is sent !");
+		 
+	    var table = $("#carttbody");
+        
+        table.find('tr').each(function (i, el ){		
+		var $tds = $(this).find('td');	
+			
+      Quantity = $tds.find("#qty").val();
+			var id=$(this).closest('tr').attr('data_id');
+	
+		
+	PlaceOrder(id,Quantity);
+			
+		
+	  });
+		 
+	    
+		 table.empty();
+	     $(document).on("change, keyup, focus" ,"#qty",CalculateTotal());
+		 
+		 
+	 });
+	
+	
+	
 });

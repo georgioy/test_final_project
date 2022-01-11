@@ -1,4 +1,10 @@
+<?php
 
+  session_start();
+
+
+
+  ?>
 
 <!doctype html>
 <html>
@@ -18,7 +24,7 @@
 
 <body>
 	
- <!-- navbar -->
+
    <div class="mb-3">
         <nav class="navbar navbar-expand-md fixed-top shadow-sm">
             <div class="navbar-brand logo">
@@ -119,7 +125,7 @@
             <a href="#" class="btn btn-primary mb-4 btn-lg pl-5 pr-5" id="Order">Order</a>
         </div>
         <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
-            <a href="catalog.html">
+            <a href="index.php">
                 <i class="fas fa-arrow-left mr-2"></i> Continue Shopping</a>
         </div>
     </div>

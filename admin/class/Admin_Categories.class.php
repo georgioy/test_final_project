@@ -75,6 +75,19 @@ require_once('../../DAL/DAL.class.php');
 		
 		return $rows;
 	 }
+	 public function CheckIfCategoryHasItems($catname)
+	 {
+		$sql="Select * from `products` where `products`.`product_category`= $catname";
+		
+		$db= new DAL();
+		
+		$rows= $db->getData($sql);
+		
+		if(!empty($rows))
+			return 1;
+		else
+			return 0;
+	 }
 	
  }
 

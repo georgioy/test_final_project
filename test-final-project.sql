@@ -101,6 +101,34 @@ INSERT INTO `logins_registers` (`id`, `user_email`, `date_time`, `action_status`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ordered`
+--
+
+DROP TABLE IF EXISTS `ordered`;
+CREATE TABLE IF NOT EXISTS `ordered` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `customer_id` int(10) NOT NULL,
+  `product_id` int(10) NOT NULL,
+  `product_quantity` int(10) NOT NULL,
+  `status` int(10) NOT NULL,
+  `date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=84 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ordered`
+--
+
+INSERT INTO `ordered` (`id`, `customer_id`, `product_id`, `product_quantity`, `status`, `date_time`) VALUES
+(83, 147, 100, 1, 0, '2022-01-11 20:07:28'),
+(82, 147, 97, 1, 0, '2022-01-11 20:07:28');
+
+-- --------------------------------------------------------
+
+
+
+
+--
 -- Table structure for table `products`
 --
 

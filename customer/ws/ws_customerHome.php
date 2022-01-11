@@ -18,7 +18,7 @@
             case 1:
                 {
                     $result = $customerhome->getSales();
-
+                 //      echo json_encode($result); 
                     break;
                 }
 
@@ -26,7 +26,7 @@
             case 2:
                 {
                     $result = $customerhome->newArrivals();
-       
+                //    echo json_encode($result); 
                     break; 			 
                 }
 
@@ -34,6 +34,7 @@
             case 3:
                 {
                     $result = $customerhome->getCategories();
+				//	 echo json_encode($result); 
                     break;
                 }
 
@@ -84,14 +85,38 @@
                         //add sale or arrival product id to array and send by session
                         case 8:
                             {
-                                $id = $_GET['PId'];
+					/*			
+							$pid = $_GET['PId'];
+							
+					//		$array_pid = array($pid);	
+								
+							session_start();	
+								
+							 $id=$_GET['userId'];
+                             $_SESSION["userid"] = $id;	
+						    
+						   $_SESSION['cart'] [] = $pid;
+								
+						
+						  echo json_encode($_SESSION['cart']); 
+						  echo json_encode( $_SESSION["userid"]);
+						*/		
+							
+                             $id = $_GET['PId'];
                               
-                                session_start();
+                             session_start();
 
-                             $_SESSION['cart'][] = $id;
-
-                             header("Content-type:application/json");
-                             echo json_encode($_SESSION["cart"]);
+                          $_SESSION["cart"][] = $id;
+                           
+								
+				     $array_pid = $_SESSION["cart"];                      
+							       
+					 $result =  $array_pid;
+								
+                     
+						
+							
+							
                              break;
                             }
                         case 9:{
@@ -108,7 +133,7 @@
     
         
     header("Content-type:application/json");
-    echo json_encode($result);   
+   echo json_encode($result);   
        
 
  ?>
