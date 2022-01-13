@@ -54,7 +54,7 @@
 
                     <div class="cartdiv">
                         <i class="fas fa-shopping-cart " id="cartimg"></i>    
-                        <a href="cart.php" class="cart_link link"  >Cart</a>
+                        <a href="cart.php"  class="cart_link link"  >Cart</a>
                         <input type='hidden' class="cartUid" id=""  />
                     </div>
 
@@ -74,6 +74,15 @@
 
     </div>
 
+    <!-- div when clicking add to cart if not logged -->
+<div class="alert alert-warning" style=" display:none; margin-top:75px;"  id="cartAdd" class="cartAdd">
+   <strong> Please login first. </strong>
+  </div>
+<!-- div when clicking add to cart when logged -->
+  <div class="alert alert-success" style="display:none; margin-top:75px;" id="cartAddAccepted" class="cartAdd">
+      Item added to your cart.
+  </div>   
+
 <div class="contain6">
   <img src="../img/adidas.jpg" alt="Snow" style="width:100%">
   <button class="btn6">Login</button>
@@ -86,13 +95,17 @@
     <p class="pImg2"> Count down to the New Year Style</p>
  
 </div>
-<input type="hidden" class="userHiddenId" value="<?php   checkSessionCustomer(); ?>"  />
+<input id="UIDinput" type="hidden"  class="userHiddenId" value="<?php   checkSessionCustomer(); ?>"  />
 
 
+
+ 
     <div>
     <h1>Sales</h1>
     </div>
 
+  
+    
 
 
 <section style="background-color: #eee;">
@@ -106,7 +119,7 @@
   </div>
 
   <div class="moresales">
-        <button class="ShowMore " style="vertical-align:middle;font-size:20px;"><span class="spanbtn">View All Sales </span></button>
+        <button class="ShowMore " id="allSales" style="vertical-align:middle;font-size:20px;"><span class="spanbtn">View All Sales </span></button>
         <br>
   </div>
 
@@ -138,7 +151,7 @@
 
     <div class="moreproducts">
         <br>    <br>
-        <button class="ShowMore " style="vertical-align:middle;font-size:20px;"><span class="spanbtn">View All Products</span></button>
+        <button class="ShowMore " id="allProducts" style="vertical-align:middle;font-size:20px;"><span class="spanbtn">View All Products</span></button>
         <br>
   </div>
  

@@ -125,6 +125,17 @@
 			 
 			                 break;
                         }
+
+                        case 10:
+                            {
+                                  session_start();
+                                 $id=$_GET['sales'];
+                                 $_SESSION["sales"] = $id;
+                                 header("Content-type:application/json");
+                                 echo json_encode($id);
+                                 break;
+            
+                            }
            
 
             default:

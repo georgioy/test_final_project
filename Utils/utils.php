@@ -28,4 +28,18 @@
 
 		}
 	}
+
+
+	function checkSessionSalesandAll()
+	{
+	  //session_start();
+
+		if(isset($_SESSION["sales"]))
+		{
+			$saleid=$_SESSION["sales"];
+			echo "salesProduct=$saleid";
+		}
+		else
+		echo("no sales");
+	}
 ?>
