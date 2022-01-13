@@ -82,7 +82,7 @@
 			return $rows;
 		}
 		public function GetCategories(){
-			$sql="select cat_name from categories";
+			$sql="select * from categories ORDER BY cat_id ASC";
 		
 			$db = new DAL();
 		

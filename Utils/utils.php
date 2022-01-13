@@ -8,7 +8,6 @@
 		if(isset($_SESSION["id"])&&$_SESSION["user_type"]=="admin")
 		{
 			$id=$_SESSION["id"];
-			$user_type=$_SESSION["user_type"];
 
 			return $id;
 

@@ -17,7 +17,10 @@ switch ($op) {
 		break;
 	//filter
 	case 2:
-		$selected=$_GET['selected'];
+		if(isset($_GET['selected'])){
+			$selected=$_GET['selected'];
+		}
+
 	
 		$result=$logins->FilterTheTable($selected);
 		

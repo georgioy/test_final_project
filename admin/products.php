@@ -22,7 +22,7 @@ checkSessionAdmin();
      <script src="..\bootstrap\js\jquery.bootstrap-growl.min.js"></script>
     <script src="js\products.js"></script>
 </head>
- <!-- navbar -->
+     <!-- navbar -->
     <div class="mb-3">
         <nav class="navbar navbar-expand-md fixed-top shadow-sm">
             <div class="navbar-brand logo">
@@ -43,7 +43,7 @@ checkSessionAdmin();
                 <nav>
                     <ul class="mt5">
                         <li><a href="Customers.php">CUSTOMERS</a></li>
-                        <li><a href="#">ORDERED</a></li>
+                        <li><a href="ordered.php">ORDERED</a></li>
                         <li><a href="#">STATISTICS</a></li>
                         <li><a href="logins_register.php">LOGIN REGISTER</a></li>
                         <li><a href="..\login&register\Login.php">LOGOUT</a></li>
@@ -103,8 +103,8 @@ checkSessionAdmin();
             </tbody>
         </table>
     </div>
-
-    <center class="mb-5 view_more"><button id="load_more" class="btn" style="color:#1d1c1c;box-shadow: none;">View More <i class="fa fa-angle-double-right" ></i></button>  </center>
+    <!--  <center class="mb-5 view_more"><button id="load_more" class="btn" style="color:#1d1c1c;box-shadow: none;">View More <i class="fa fa-angle-double-right" ></i></button>  </center> -->
+   
     <div id="down">
         <input type="hidden" id="all" value="">
     <input type="hidden" id="add_rows" value="">

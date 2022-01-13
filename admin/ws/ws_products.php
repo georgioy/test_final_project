@@ -55,7 +55,6 @@
 
 		//get all data
 		case 5:
-				/*$add_rows=$_GET['add_rows'];*/
 
 				$result=$products->getAllproducts();
 				
@@ -114,3 +113,4 @@
 
 
 ?>
+

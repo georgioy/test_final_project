@@ -7,20 +7,23 @@ checkSessionAdmin();
 
 ?>
 
-<!doctype html>
+
+<!DOCTYPE html>
+
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>Categories</title>
+    <title>Ordered</title>
     <link rel="stylesheet" href="../fontawesome-free-5.15.4-web/css/all.css">
-    <link href="css/categories.css" rel="stylesheet" type="text/css">
+    <link href="css\ordered.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="..\bootstrap\css\bootstrap.min.css" />
     <script src="..\bootstrap\ajax\jquery.min.js"></script>
     <script src="..\bootstrap\js\bootstrap.min.js"></script>
-    <script src="js/Admin_Categories.js"></script>
+    <script src="js\ordered.js"></script>
+
 </head>
 <body>
-        <!-- navbar -->
+    <!-- navbar -->
     <div class="mb-3">
         <nav class="navbar navbar-expand-md fixed-top shadow-sm">
             <div class="navbar-brand logo">
@@ -56,100 +59,76 @@ checkSessionAdmin();
     </div>
     <!-- title -->
     <div class="title-text">
-        <h1>Categories</h1>
+        <h1>Ordered</h1>
     </div>
     <!-- control -->
     <div class="setting">
         <form class="form-inline justify-content-center">
             <div class="card-body mt-3">
-                <input type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModal" value="Add Category" id="ADD">
-                <span class="font-weight-bold">Filter by: </span>
-                <select class="select form-control" id="selected">
-                    <option value="Display All">Display All</option>                
-                    <option value="Activated Categories">Activated Categories</option>
-					<option value="Deactivated Categories">Deactivated Categories</option> 
+                <input type="button" class="btn" data-bs-toggle="modal" id="modaldel"data-bs-target="#myModaldelete" value="clear All Data">
+                <span class="font-weight-bold">Search by: </span>
+                    <select class="select form-control" id="select_filter">
+                    <option value="All">All</option>
+                    <option value="Unaccepted">Unaccepted Orderes</option>
+                    <option value="Accepted">Accepted orderes</option>
                 </select>
-				
-                <input id="txtSearch" class="form-control mr-sm-2 ml-10"  placeholder="Category Name" aria-label="Search" ></inp>		
+                <input id="insearch"   class="form-control mr-sm-2 ml-10" type="text" placeholder="Search" aria-label="Search">
+ 
             </div>
+
+           
         </form>
     </div>
-	
-	
-	
     <!-- table -->
     <div class="col">
-        <table class="table table-hover table-bordered mt-2  mr-3 " border="0" id="categoriestable">
+        <table class="table table-hover table-bordered mt-2  mr-3 " border="0" id="table">
             <thead>
                 <tr>
-                    <th scope="col">Image</th>
-					<th scope="col">Category Name</th>             
-                    <th scope="col">Status</th>
-                    <th scope="col">Actions</th>
-                </tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Email Address</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Date-Time</th>
+                    <th scope="col">Accepted or Waiting</th>
+                    <th scope="col">View\Delete</th>
+                 </tr>
             </thead>
 
-            <tbody id="categoriestbody">
-				 </tbody>
+            <tbody id="orderestable">
+            
+            </tbody>
         </table>
     </div>
-	<!-- delete modal -->
-	<div class="modal" id="myModaldelete">
+    <!-- modal delete-->
+    <div class="modal" id="myModaldelete">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Delet Or Deactivate Product </h5>
+                    <h5 class="modal-title">Are You Sure For Deleting All Actions </h5>
                     <button class="close btn" style="" data-bs-dismiss="modal">x</button>
                    
                 </div>
                 <div class="modal-body">
-                    <button id="deactivate_category" class=" btn">Deactivate Category</button>
-                    <button id="delete_category" class=" btn">Delete Category</button>
+                <form>
+                    <input type="hidden" id="idd" value="">
+                    <button id="delete_all" class=" btn">Delete All</button>
+                    <button id="delete_this" class=" btn">Delete</button>
+                    <button id="cancel" class=" btn">Cancel</button>
+                </form>
+
                 </div>
 
             </div>
         </div>
     </div>
-	
-   <!-- modal -->
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="Setheader" >Add New Category</h5>
-                    <button class="close btn" style="" data-bs-dismiss="modal">×</button>
-                   
-                </div>
-                <div class="modal-body">
-                    <form method="post">
-                        <div class="mb-3">
-                            <input type="text" placeholder="Category Name" class="form-control" id="editname">
-                        </div>
-                       
-                        <div class="mb-3">
-                            <input type="file" id="chooseimage" /><input type="hidden"  placeholder="image" class="form-control" id="editimage">		
-						</div>
-                        <div class="mb-3">
-                            <button type="submit" class="addbtn btn" id="OK">Add</button>
-							<button  type="hidden"  class="addbtn btn" id="SUBEDI">Update</button>
-							<button  type="hidden"  class="addbtn btn" id="CANEDI">Cancel</button>
-                        </div>
-						
-                        
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
-      <script>
-
+        <script>
+        //side navbar
         var menubtn = document.getElementById("menubtn")
         var sideNav = document.getElementById("sideNav")
         var menu = document.getElementById("menu")
-
+        
         sideNav.style.right = "-250px";
-
+        //hide and show image close and menu in navbar
         menubtn.onclick = function () {
             if (sideNav.style.right == "-250px") {
                 sideNav.style.right = "0";
@@ -159,11 +138,8 @@ checkSessionAdmin();
                 sideNav.style.right = "-250px";
                 menu.src = "../img/menu.png";
             }
-        }
-
-        $('.fa-thumbs-down').hide();
-                    //$('.fa-thumbs-down').show();
-
+        }  
+        
 
     </script>
     <script src="..\bootstrap\js\bootstrap.bundle.min.js"></script>

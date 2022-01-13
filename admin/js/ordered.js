@@ -1,19 +1,19 @@
 
 $(document).ready(function () {
     display();
-    getActions();
-    function getActions() {
+    getorderes();
+    function getorderes() {
         var op = 1;
         $.ajax({
             type: 'GET',
-            url: "./ws/ws_logins_register.php",
+            url: "./ws/ws_ordered.php",
             dataType: 'json',
-            data: { op: op},
+            data: { op: op },
             success: function (response) {
                 if (response == -1)
                     alert("Data couldn't be loaded!");
                 else {
-                    parseActions(response);
+                    parseorderes(response);
                 }
             },
             error: function (xhr, status, errorThrown) {
@@ -21,97 +21,109 @@ $(document).ready(function () {
             }
         });
 
-    }
+    } 
 
-    function parseActions(response) {
+    function parseorderes(response) {
 
         var len = response.length;
 
         for (var i = 0; i < len; i++) {
 
             var id = response[i].id;
-            var email = response[i].user_email;
-            var status = response[i].action_status;
+            var username = response[i].username;
+            var email = response[i].email;
+            var phone_number = response[i].phone_number;
+            var address = response[i].address;
+            var status = response[i].status;
             var date_time = response[i].date_time;
             var row = "<tr id='" + id + "'  >";
-            row += "<td>" + statusMsg(status) + "</td>";
-            row += "<td>" +  email+ "</td>";
+            row += "<td>" + username + "</td>";
+            row += "<td>" +  phone_number+ "</td>";
+            row += "<td>" + email + "</td>";
+            row += "<td>" + address + "</td>";
             row += "<td>" + date_time + "</td>";
-            row += "<td id='action'>" + "<button id='del_" + id + "' data-bs-toggle='modal' data-bs-target='#myModaldelete' class='delete btn'><i class='fas fa-trash'></i></button>";
+            row += "<td id='status'>" + getstautus(status) + "</td>";
+            row += "<td>" + "<button id='view_" + id + "' class='view btn btn-" + btnviewcolor(status) + "'> View Order products</button>";
+               
             row += "</tr>";
-            $("#actionstable").append(row);
+            
+            $("#orderestable").append(row);
 
         }
     }
-
-
-    function statusMsg(status) {
-        var msg = '';
+    function btnviewcolor(status) {
         if (status == 1) {
-            msg = "<div class='mt-2'><p id='msgsuccessa'>Admin logged in</p></div>";
+            return "success";
         }
-        else if  (status == 2) {
-            msg = "<div class='mt-2'><p id='msgsuccess'>New Customer logged in</p></div>";
-        }
-        else if (status == 3) {
-            msg = "<div class='mt-2'><p id='msgsuccess'>Old Customer logged in</p></div>";
+        else if (status == 2) {
+            return "danger";
         }
         else {
-            msg = "<div class='mt-2'><p id='msgerror'>This email tried to login with incorrect password</p></div>";
+            return "warning";
         }
-        return msg;
+
     }
 
-    
+    function getstautus(status) {
+        if (status == 0) {
+            
+            var statusicon = "<i class='fas fa-clock'></i>";
+            return statusicon;
+        }
+        else if (status == 2) {
+
+            var statusicon = "<i class='fas fa-ban'></i>";
+            return statusicon;
+        }
+        else {
+            var buttoncolor = "<i class='fas fa-shipping-fast'></i>";
+            return buttoncolor;
+        }
+    }
+
+
     function display() {
         $("#select_filter").change(function () {
             var value = $("#select_filter").val();
-            var selected = "";
-            $("#actionstable").html('');
+            var selected = " ";
+            $("#orderestable").html('');
             if (value == "All") {
-                getActions();
+                getorderes();
             }
-            else if (value == "admin_log") {
-                selected = "1";
-                getdatafiltered(selected);
-            }
-            else if (value == "customer_log_N") {
-                selected = "2";
-                getdatafiltered(selected);
-            }
-            else if (value == "customer_log_O") {
-                selected = "3";
-                getdatafiltered(selected);
-            }
-            else if (value == "tried"){
+            else if (value == "Unaccepted") {
                 selected = "0";
-                getdatafiltered(selected);
+                getdatafiltered(selected)
+
+            }
+            else if (value == "Accepted") {
+                selected = "1";
+                getdatafiltered(selected)
             }
             else {
-                getActions();
+                getorderes();
             }
 
             
 
         });
     }
+
     function getdatafiltered(selected) {
         var op = 2;
         $.ajax({
             type: 'GET',
-            url: "./ws/ws_logins_register.php",
+            url: "./ws/ws_ordered.php",
             dataType: 'json',
             data: { op: op, selected: selected },
             success: function (response) {
                 if (response == -1)
                     alert("Data couldn't be loaded!");
                 else {
-                    parseActions(response);
+                    parseorderes(response);
                 }
             },
         });
     }
-    
 
     $(document).on('click', '#modaldel', function () {
         $("#delete_all").show();
@@ -120,11 +132,11 @@ $(document).ready(function () {
     ///button delete all
     $(document).on('click', '#delete_all', function () {
 
-        
-        
+
+
         deleteAll();
         $("#myModaldelete").modal('toggle');
-        $("#actionstable").html('');
+        $("#orderestable").html('');
         return false;
 
     });
@@ -134,8 +146,8 @@ $(document).ready(function () {
         var op = 3;
         $.ajax({
             type: 'GET',
-            url: "./ws/ws_logins_register.php",
-            data: { op: op},
+            url: "./ws/ws_ordered.php",
+            data: { op: op },
             cache: false,
             success: function (response) {
             },
@@ -166,8 +178,8 @@ $(document).ready(function () {
         var op = 4;
         $.ajax({
             type: 'GET',
-            url: "./ws/ws_logins_register.php",
-            data: { op: op,id:id},
+            url: "./ws/ws_ordered.php",
+            data: { op: op, id: id },
             cache: false,
             success: function (response) {
                 $('#' + id).hide();
@@ -176,6 +188,36 @@ $(document).ready(function () {
         });
     }
 
+    //send order products to view order ws
+    function orderproducts(customer_id,date_time) {
+        var op = 4;
+        $.ajax({
+            type: 'GET',
+            url: "./ws/ws_ordered.php",
+            dataType: 'json',
+            data: { op: op, customer_id: customer_id, date_time: date_time },
+            success: function (response) {
+                if (response == -1)
+                    alert("Data couldn't be loaded!");
+                else {
+                }
+            },
+        });
+    }
+    ///button view order
+    $(document).on('click', '.view', function () {
+
+        var customer_id = $(this).attr("id");
+
+        customer_id = customer_id.substring(5);
+
+        var date_time = $(this).closest("tr").find('td:eq(4)').text();
+
+        orderproducts(customer_id, date_time);
+        window.location.href = "view_order.php";
+
+
+    });
     // search in table
     $(document).ready(function () {
         $("#insearch").on("keyup", function () {

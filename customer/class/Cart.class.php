@@ -25,7 +25,8 @@
 	       }
 		 public function OrderNow($Customer_id,$product_id,$product_qty,$status)
 		 {
-			 $sql="INSERT INTO `ordered` (`customer_id`, `product_id`, `product_quantity`, `status`, `date_time`) VALUES ('$Customer_id', '$product_id', '$product_qty', '$status', CURRENT_TIMESTAMP)";
+			 $date_time= date('l y-m-d H:i',strtotime($H."+1 hour"));
+			 $sql="INSERT INTO `ordered` (`customer_id`, `product_id`, `product_quantity`, `status`, `date_time`) VALUES ('$Customer_id', '$product_id', '$product_qty', '$status', '$date_time')";
 			 
 			 $db= new DAL();
 		 

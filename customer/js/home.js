@@ -309,7 +309,6 @@ $(document).ready(function(){
  
 
         var userid = $('.userHiddenId').val();
-        alert(userid);
         if (userid == "") {
             $('.userHiddenId').val() = '';
              window.location.href = "../login&register/Login.php";

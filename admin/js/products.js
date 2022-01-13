@@ -72,9 +72,9 @@ $(document).ready(function () {
         product_image = product_image.substring(12);
         $('#imageproductname').val(product_image);
         addproduct(product_name, product_category, product_gender, product_quantity, product_price, product_final_price, product_image);
-        getproducts();
+        //getproducts();
 
-        location.reload();
+        //location.reload();
         $("#myModal").modal('toggle');
 
 
@@ -92,7 +92,8 @@ $(document).ready(function () {
             data: { op: op, product_name: product_name, product_category: product_category, product_gender: product_gender, product_quantity: product_quantity, product_price: product_price, product_final_price: product_final_price, product_image: product_image },
             cache: false,
             success: function (response) {
-
+                $("#productstbody").empty();
+                getproducts();
 
             },
         });
@@ -112,7 +113,7 @@ $(document).ready(function () {
             type: 'GET',
             url: "./ws/ws_products.php",
             dataType: 'json',
-            data: { op: op/*, add_rows: add_rows*/ },
+            data: { op: op},
             success: function (response) {
                 if (response == -1)
                     alert("Data couldn't be loaded!");
@@ -159,7 +160,6 @@ $(document).ready(function () {
             item += "</tr>";
 
             $("#productstbody").append(item);
-            $("#last").val(id);
         }
     }
 

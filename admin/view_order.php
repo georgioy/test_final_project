@@ -4,7 +4,6 @@ require("../Utils/utils.php");
 
 checkSessionAdmin();
 
-
 ?>
 
 
@@ -13,13 +12,13 @@ checkSessionAdmin();
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>logins_register</title>
+    <title>View Order</title>
     <link rel="stylesheet" href="../fontawesome-free-5.15.4-web/css/all.css">
-    <link href="css\logins_register.css" rel="stylesheet" type="text/css">
+    <link href="css\view_order.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="..\bootstrap\css\bootstrap.min.css" />
     <script src="..\bootstrap\ajax\jquery.min.js"></script>
     <script src="..\bootstrap\js\bootstrap.min.js"></script>
-    <script src="js\logins_register.js"></script>
+    <script src="js\view_order.js"></script>
 
 </head>
 <body>
@@ -59,66 +58,46 @@ checkSessionAdmin();
     </div>
     <!-- title -->
     <div class="title-text">
-        <h1>Login Register Actions</h1>
+        <h1>View Order</h1>
     </div>
-    <!-- control -->
-    <div class="setting">
-        <form class="form-inline justify-content-center">
-            <div class="card-body mt-3">
-                <input type="button" class="btn" data-bs-toggle="modal" id="modaldel"data-bs-target="#myModaldelete" value="clear All Data">
-                <span class="font-weight-bold">Search by: </span>
-                    <select class="select form-control" id="select_filter">
-                    <option value="All">All</option>
-                    <option value="admin_log">Admins logged in</option>
-                    <option value="customer_log_O">Old Customers logged in</option>
-                    <option value="customer_log_N">New Customers logged in</option>
-                    <option value="tried">Tried</option>
-                </select>
-                <input id="insearch"   class="form-control mr-sm-2 ml-10" type="text" placeholder="Search" aria-label="Search">
- 
-            </div>
-
-           
-        </form>
-    </div>
+     <!-- Customer information -->
+    
+     <h4 class="ml-3">Customer Information</h4>
+    <div id="Customer_info" class="mb-5">
+    <div class="ml-3" id="i_username"></div>
+    <div class="ml-3"  id="i_Phone"></div>
+    <div class="ml-3"  id="i_email"></div>
+    <div class="ml-3"  id="i_address"></div>
+     
+     
+     
+     </div>
     <!-- table -->
     <div class="col">
         <table class="table table-hover table-bordered mt-2  mr-3 " border="0" id="table">
             <thead>
                 <tr>
-                    <th scope="col">Status</th>
-                    <th scope="col">Email Address</th>
-                    <th scope="col">Date-Time</th>
-                    <th scope="col">Select</th>
+                    <th scope="col">Product Image</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Product Category</th>
+                    <th scope="col">Product Gender</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total Price</th>
                  </tr>
             </thead>
-
-            <tbody id="actionstable">
+            <tbody id="orderestable">
             
             </tbody>
         </table>
     </div>
-    <!-- modal delete-->
-    <div class="modal" id="myModaldelete">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Are You Sure For Deleting All Actions </h5>
-                    <button class="close btn" style="" data-bs-dismiss="modal">x</button>
-                   
-                </div>
-                <div class="modal-body">
-                <form>
-                    <input type="hidden" id="idd" value="">
-                    <button id="delete_all" class=" btn">Delete All</button>
-                    <button id="delete_this" class=" btn">Delete</button>
-                    <button id="cancel" class=" btn">Cancel</button>
-                </form>
+    <div id="control_order">
+     <div id="total"></div> 
+     <input type="button" id="reject" class="btn btn-danger"  value="Reject Order">
+     <input type="button" id="accept" class="btn btn-success"  value="Accept Order">
 
-                </div>
+    
 
-            </div>
-        </div>
+    
     </div>
         <script>
         //side navbar
@@ -138,7 +117,7 @@ checkSessionAdmin();
                 menu.src = "../img/menu.png";
             }
         }  
-        
+
 
     </script>
     <script src="..\bootstrap\js\bootstrap.bundle.min.js"></script>
