@@ -382,10 +382,29 @@
 
 
 
+  #cartAdd { 
+    position: fixed; 
+     top: 140;
+     left: 19%; width: 60%;
+     z-index: 9999; 
+     align-self: center !important;
+     text-align: center !important;} 
+
+
+#cartAddAccepted{
+    position: fixed; 
+    top: 160;
+    left: 19%; width: 60%;
+    z-index: 9999; 
+    align-self: center !important;
+    text-align: center !important;
+}
+
+
+
 
  
-
-
+ 
 
 
 

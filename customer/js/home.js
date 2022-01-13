@@ -12,7 +12,7 @@ $(document).ready(function () {
 
 
         $.each(data, function (index, row) {
-            var name = $(".dropdown-content").innerHTML = "<a href=''  id='Filter_" + row.cat_id + "'> " + row.cat_name + "</a>";
+            var name = $(".dropdown-content").innerHTML = "<a href='' class='dropdownCat'  id='" + row.cat_id + "'> " + row.cat_name + "</a>";
             $(".dropdown-content").append(name);
         });
 
@@ -44,7 +44,43 @@ $(document).ready(function () {
         });
 
     }
+
+
+
+
+
+    
+         ////////////////////////cat drop down redirect to filtering////////////////////////added
+         $(document).on('click', '.dropdownCat', function(){
+            
+            var id = $(this).attr("id");
+         //  alert(id);
+            var dropValue = $(this).text().trim();
+            selecteddrop = dropValue;
+            
+                    var op=6;
+                    $.ajax({
+                        type: 'GET',
+                        url: "./ws/ws_customerHome.php",
+                        dataType: 'json',
+                        data: { op: op, catID: id },
+                        success: function (response) {
+                        },
+
+                    });
+                    window.location.href = "http://localhost/final1/f1/test_final_project/customer/filtering.php";
+
+                    return false;
+               
+        });
+
+
+
+
+
+
     var userid = $('.userHiddenId').val();
+   // alert(userid);
     senduserID();
     function senduserID(){
         var id = userid;
@@ -131,28 +167,12 @@ $(document).ready(function () {
 
     }
 
- 
-        $(document).on('click', '.addtoArray', function(){
-            var id = $(this).attr("id");
-            var op=8;
-            $.ajax({
-                type: 'GET',
-                url: "./ws/ws_customerHome.php",
-                dataType: 'json',
-                data: { op: op, PId: id },
-                success: function (response) {
-                },
-
-            });
-
-            return false;
-
-        });
-    
+  
 
 });
  
 
+ 
 
 $(document).ready(function(){
 
@@ -211,9 +231,7 @@ $(document).ready(function(){
             var input4id = '<input type="hidden" id="'+id+'" >';
 
             
-           $(document).on('click', '.add-to-cart', function(){
-             return;            
-          });
+        
       
             container.innerHTML += '<div  class="col-md-3 col-sm-6" style="padding:20px;"><div class="product-grid">'+
             '<div class="product-image" >' + Pimage + addToCart + '</div>' + 
@@ -309,7 +327,7 @@ $(document).ready(function(){
  
 
         var userid = $('.userHiddenId').val();
-        alert(userid);
+      //  alert(userid);
         if (userid == "") {
             $('.userHiddenId').val() = '';
              window.location.href = "../login&register/Login.php";
@@ -332,3 +350,109 @@ $(document).ready(function(){
 
        });
 });
+
+
+
+
+
+
+$(document).ready(function(){
+
+    ///show more send to ws
+    $(document).on('click', '.ShowMore', function(){
+        var id = $(this).attr("id");
+     //  alert(id);
+        var op=10;
+        $.ajax({
+            type: 'GET',
+            url: "./ws/ws_customerHome.php",
+            dataType: 'json',
+            data: { op: op, sales: id },
+            success: function (response) {
+            },
+    
+        });
+       window.location.href = "http://localhost/final1/f1/test_final_project/customer/filtering.php";
+
+        return false;
+    
+    });
+});
+
+
+
+
+
+
+////hide login icon id user is logged in
+$(document).ready(function(){
+    var userid = $('.userHiddenId').val();
+    // alert(userid);
+     if (userid == "") {
+       //  alert("no id"); 
+     } else {
+         $(".logindiv").hide();
+         $(".btn6").hide();
+         $(".btnregister").hide();
+         $(".logout").show();
+
+
+    }  
+});
+
+//open filtered when clicking on cat card
+$(document).on('click', '.getcat', function(){
+    var id = $(this).attr("id");
+ //   alert(id);
+    var op=6;
+    $.ajax({
+        type: 'GET',
+        url: "./ws/ws_customerHome.php",
+        dataType: 'json',
+        data: { op: op, catID: id },
+        success: function (response) {
+        },
+
+    });
+    window.location.href = "http://localhost/final1/f1/test_final_project/customer/filtering.php";
+
+    return false;
+
+});
+
+
+    ////////////function to add cards to the cart when clicking add to card btns if logged in and show log in msg if not
+    $(document).ready(function(){
+        $(document).on('click', '.addtoArray', function(){
+            var value = $('#UIDinput').val();
+         //   alert(value);
+                if(value == ""){
+                   // alert("no user");
+                    ///show please login message
+                    const targetDiv = document.getElementById("cartAdd");
+                    targetDiv.style.display = "block";
+                    $("#cartAdd").fadeOut(4000);
+
+                }else{
+                   // alert("userLogged");
+                    ///show item added to cart message
+                    const targetDiv1 = document.getElementById("cartAddAccepted");
+                    targetDiv1.style.display = "block";
+                    $("#cartAddAccepted").fadeOut(3000);
+                    var id = $(this).attr("id");
+
+                    var op=8;
+                    $.ajax({
+                        type: 'GET',
+                        url: "./ws/ws_customerHome.php",
+                        dataType: 'json',
+                        data: { op: op, PId: id },
+                        success: function (response) {
+                        },
+        
+                    });
+                }
+            return false;
+        });
+     
+     });

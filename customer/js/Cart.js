@@ -17,7 +17,7 @@ $(document).ready(function(){
 		
 	$.each(data, function(index, row) 
 	 { 
-		var name=$(".dropdown-content").innerHTML="<a href=''  id='Filter_"+row.cat_id+"'> "+row.cat_name+"</a>";
+		var name=$(".dropdown-content").innerHTML="<a href='' class='dropdownCat' id='"+row.cat_id+"'> "+row.cat_name+"</a>";
 	    $(".dropdown-content").append(name);	
 	});
 		
@@ -51,6 +51,38 @@ $(document).ready(function(){
 		  });  	
 
 	}
+
+
+	
+
+    
+         ////////////////////////cat drop down redirect to filtering////////////////////////added
+         $(document).on('click', '.dropdownCat', function(){
+            
+            var id = $(this).attr("id");
+         //  alert(id);
+            var dropValue = $(this).text().trim();
+            selecteddrop = dropValue;
+            
+                    var op=6;
+                    $.ajax({
+                        type: 'GET',
+                        url: "./ws/ws_customerHome.php",
+                        dataType: 'json',
+                        data: { op: op, catID: id },
+                        success: function (response) {
+                        },
+
+                    });
+                    window.location.href = "http://localhost/final1/f1/test_final_project/customer/filtering.php";
+
+                    return false;
+               
+        });
+
+
+
+
 	
 		
 		
