@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2022 at 03:32 PM
+-- Generation Time: Jan 14, 2022 at 05:53 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -67,8 +67,10 @@ CREATE TABLE `customers` (
 
 INSERT INTO `customers` (`id`, `username`, `email`, `password`, `address`, `status`, `user_type`, `phone_number`) VALUES
 (145, 'hassanghanem', 'hassanghanem030@gmail.com', '$2y$10$DdrWxjyAZgrrphqiU39jSeHwYqXP0Axold.Fre5lrWw7Jt3Rl6CAC', 'Ainathah', 1, 'admin', 7865543),
-(146, 'Mark', 'Mark@gmail.com', '$2y$10$2KKiEC1o10F7Baw1LiyZc.lA.dM423vOwI4.dyBvnh5bRxzzNImza', 'ds', 1, 'customer', 7865543),
-(147, 'Hassan', 'ghanem.hasan@aut.edu', '$2y$10$j2VLsXr.NhomOxoiobdps.LsfTPpLPAb.TTfM1AFHgQfsvj2i62mi', 'ds', 1, 'customer', 7865543);
+(152, 'ALI', 'Ali@aut.edu', '$2y$10$Obb7S2jvyMgHdN9byq3/eeyUOP7on9skEReBrsMzgsLTarmPXvlcS', 'Tyre', 1, 'customer', 7865543),
+(153, 'Mark', 'Mark@gmail.com', '$2y$10$YRfE7O.bC6h3L2zUsEX52ubpIwaOC7Ae45x641IP7LI7d3yUDaxxO', 'Halat', 1, 'customer', 7865543),
+(154, 'Ghadir', 'ghadir@gmail.com', '$2y$10$vyTdx4fXd1nSyvZ6YLjM7uxzU1NYOMWZnd4dgsCDLWXWGjoJkid.y', 'Tebnin', 1, 'customer', 70624357),
+(155, 'Reda', 'reda@gmail.com', '$2y$10$0T7cNjw3ES8eL8MxSW2ywOqgWfpip7gnSKKuK7oLxNm5obpujih4.', 'Tyre', 1, 'customer', 76522354);
 
 -- --------------------------------------------------------
 
@@ -88,15 +90,47 @@ CREATE TABLE `logins_registers` (
 --
 
 INSERT INTO `logins_registers` (`id`, `user_email`, `date_time`, `action_status`) VALUES
-(28, 'hassanghanem030@gmail.com', '2022-01-07 13:39:40', 2),
-(29, 'Mark@gmail.com', '2022-01-07 13:40:19', 2),
-(30, 'ghanem.hasan@aut.edu', '2022-01-07 13:40:31', 2),
-(31, 'hassanghanem030@gmail.com', '2022-01-07 13:40:41', 1),
-(32, 'ghanem.hasan@aut.edu', '2022-01-07 13:40:58', 3),
-(33, 'ali@gmail.com', '2022-01-07 13:41:04', 0),
-(34, 'hassanghanem030@gmail.com', '2022-01-07 13:41:18', 1),
-(35, 'hassanghanem030@gmail.com', '2022-01-07 16:28:54', 1),
-(36, 'hassanghanem030@gmail.com', '2022-01-07 16:29:42', 1);
+(88, 'Ali@aut.edu', '2022-01-12 13:35:21', 2),
+(89, 'hassanghanem030@gmail.com', '2022-01-12 13:35:36', 1),
+(90, 'ali@gmail.com', '2022-01-12 13:36:14', 0),
+(91, 'Ali@gmail.com', '2022-01-12 13:36:21', 0),
+(92, 'hassanghanem030@gmail.com', '2022-01-12 13:37:11', 1),
+(93, 'Ali@aut.edu', '2022-01-12 13:37:32', 3),
+(94, 'hassanghanem030@gmail.com', '2022-01-12 13:38:02', 1),
+(95, 'Mark@gmail.com', '2022-01-12 13:39:30', 2),
+(96, 'hassanghanem030@gmail.com', '2022-01-12 13:40:02', 1),
+(97, 'ghadir@gmail.com', '2022-01-12 13:42:17', 2),
+(98, 'hassanghanem030@gmail.com', '2022-01-12 13:43:13', 1),
+(99, 'reda@gmail.com', '2022-01-12 13:44:19', 2),
+(100, 'hassanghanem030@gmail.com', '2022-01-12 13:44:49', 1),
+(101, 'Mark@gmail.com', '2022-01-12 17:58:49', 3),
+(102, 'hassanghanem030@gmail.com', '2022-01-12 17:59:17', 1),
+(103, 'hassanghanem030@gmail.com', '2022-01-12 18:20:27', 1),
+(104, 'hassanghanem030@gmail.com', '2022-01-13 17:10:09', 1),
+(105, 'Mark@gmail.com', '2022-01-13 20:31:20', 3),
+(106, 'hassanghanem030@gmail.com', '2022-01-13 20:31:39', 1),
+(107, 'ghadir@gmail.com', '2022-01-13 20:39:41', 3),
+(108, 'hassanghanem030@gmail.com', '2022-01-13 20:40:06', 1),
+(109, 'ghanem.hasan@aut.edu', '2022-01-13 23:28:09', 0),
+(110, 'Mark@gmail.com', '2022-01-13 23:28:26', 3),
+(111, 'ghadir@gmail.com', '2022-01-13 23:40:44', 3),
+(112, 'ghadir@gmail.com', '2022-01-13 23:42:21', 3),
+(113, 'ghadir@gmail.com', '2022-01-14 00:01:18', 3),
+(114, 'hassanghanem030@gmail.com', '2022-01-14 00:11:10', 1),
+(115, 'Mark@gmail.com', '2022-01-14 00:17:30', 3),
+(116, 'ali@gmail.com', '2022-01-14 17:25:58', 0),
+(117, 'Ali@gmail.com', '2022-01-14 17:26:02', 0),
+(118, 'Mark@gmail.com', '2022-01-14 17:26:12', 3),
+(119, 'Mark@gmail.com', '2022-01-14 17:45:59', 3),
+(120, 'ghanem.hasan@aut.edu', '2022-01-14 17:47:05', 0),
+(121, 'Mark@gmail.com', '2022-01-14 17:47:12', 3),
+(122, 'Mark@gmail.com', '2022-01-14 17:47:37', 3),
+(123, 'ghanem.hasan@aut.edu', '2022-01-14 17:48:29', 0),
+(124, 'ghanem.hasan@aut.edu', '2022-01-14 17:48:31', 0),
+(125, 'Mark@gmail.com', '2022-01-14 17:48:38', 3),
+(126, 'Mark@gmail.com', '2022-01-14 17:50:45', 3),
+(127, 'Mark@gmail.com', '2022-01-14 17:55:25', 3),
+(128, 'hassanghanem030@gmail.com', '2022-01-14 18:39:46', 1);
 
 -- --------------------------------------------------------
 
@@ -104,29 +138,46 @@ INSERT INTO `logins_registers` (`id`, `user_email`, `date_time`, `action_status`
 -- Table structure for table `ordered`
 --
 
-DROP TABLE IF EXISTS `ordered`;
-CREATE TABLE IF NOT EXISTS `ordered` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `customer_id` int(10) NOT NULL,
-  `product_id` int(10) NOT NULL,
-  `product_quantity` int(10) NOT NULL,
-  `status` int(10) NOT NULL,
-  `date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=84 DEFAULT CHARSET=latin1;
+CREATE TABLE `ordered` (
+  `id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `product_quantity` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `date_time` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `ordered`
 --
 
 INSERT INTO `ordered` (`id`, `customer_id`, `product_id`, `product_quantity`, `status`, `date_time`) VALUES
-(83, 147, 100, 1, 0, '2022-01-11 20:07:28'),
-(82, 147, 97, 1, 0, '2022-01-11 20:07:28');
+(30, 152, 119, 3, 1, 'Wednesday 22-01-12 13:37'),
+(31, 152, 120, 2, 1, 'Wednesday 22-01-12 13:37'),
+(32, 152, 117, 2, 1, 'Wednesday 22-01-12 13:37'),
+(33, 153, 116, 1, 1, 'Wednesday 22-01-12 13:39'),
+(34, 153, 113, 2, 1, 'Wednesday 22-01-12 13:39'),
+(35, 153, 111, 2, 1, 'Wednesday 22-01-12 13:39'),
+(36, 154, 112, 2, 2, 'Wednesday 22-01-12 13:43'),
+(37, 154, 110, 1, 2, 'Wednesday 22-01-12 13:43'),
+(38, 155, 111, 1, 0, 'Wednesday 22-01-12 13:44'),
+(39, 155, 114, 2, 0, 'Wednesday 22-01-12 13:44'),
+(40, 155, 121, 2, 0, 'Wednesday 22-01-12 13:44'),
+(41, 155, 122, 1, 0, 'Wednesday 22-01-12 13:44'),
+(42, 153, 119, 2, 1, 'Wednesday 22-01-12 17:59'),
+(43, 153, 118, 2, 1, 'Wednesday 22-01-12 17:59'),
+(44, 153, 117, 2, 1, 'Wednesday 22-01-12 17:59'),
+(45, 153, 122, 2, 1, 'Thursday 22-01-13 20:31'),
+(46, 154, 113, 1, 0, 'Thursday 22-01-13 20:39'),
+(47, 154, 115, 1, 0, 'Thursday 22-01-13 20:39'),
+(48, 154, 117, 1, 0, 'Friday 22-01-14 00:10'),
+(49, 154, 111, 2, 0, 'Friday 22-01-14 00:10'),
+(50, 154, 112, 2, 0, 'Friday 22-01-14 00:10'),
+(51, 153, 110, 2, 1, 'Friday 22-01-14 17:26'),
+(52, 153, 111, 2, 1, 'Friday 22-01-14 17:26'),
+(53, 153, 114, 1, 1, 'Friday 22-01-14 17:26');
 
 -- --------------------------------------------------------
-
-
-
 
 --
 -- Table structure for table `products`
@@ -149,19 +200,19 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `product_name`, `product_category`, `product_gender`, `product_price`, `product_final_price`, `product_quantity`, `product_image`, `status`) VALUES
-(94, 'white', 'Clothing', 'male', 20, 20, 50, 'OIP2.jpg', 1),
-(95, 'white', 'clothing', 'male', 117, 93.6, 10, 'OIP3.jpg', 1),
-(96, 'white shoes', 'shoes', 'female', 100, 50, 15, 'OIP7.jpg', 0),
-(97, 'wristwatch gold', '', 'female', 500, 250, 50, 'OIP11.jpg', 1),
-(98, 'white', 'clothing', 'male', 20, 18, 25, '155494.jpg', 0),
-(99, 'Bag', 'bags', 'male', 30, 24, 50, 'R.jpg', 1),
-(100, 'Bag', 'bags', 'male', 20, 16, 15, 'OIP10.jpg', 1),
-(103, 'hjk', 'others', 'female', 20, 10, 15, 'OIF8.jpg', 1),
-(104, 'black shoes', 'shoes', 'male', 30, 24, 50, 'R1.jpg', 1),
-(106, 'white shoes', 'shoes', 'male', 20, 20, 15, 'OIP6.jpg', 1),
-(107, 'Bag', 'bags', 'female', 20, 20, 50, 'R.jpg', 1),
-(108, 'Bag', 'bags', 'male', 50, 40, 50, 'OIP9.jpg', 1),
-(109, 'Bag', 'bags', 'male', 40, 32, 15, 'OIP10.jpg', 1);
+(110, 'Bag', 'Bags', 'male', 50, 40, 15, 'OIP9.jpg', 1),
+(111, 'white shoes', 'Shoes', 'male', 20, 20, 50, 'OIP6.jpg', 1),
+(112, 'black shoes', 'Shoes', 'female', 20, 20, 50, 'R1.jpg', 1),
+(113, 'wristwatch gold', 'Others', 'female', 50, 45, 10, 'OIP11.jpg', 1),
+(114, 'white', 'Clothing', 'female', 15, 15, 50, 'OIP2.jpg', 1),
+(115, 'Bag', 'Bags', 'female', 30, 27, 50, 'R.jpg', 1),
+(116, 'cap', 'Others', 'male', 45, 45, 5, 'OIF8.png', 1),
+(117, 'white ', 'Clothing', 'male', 20, 18, 50, 'OIP3.jpg', 1),
+(118, 'white shoes', 'Clothing', 'male', 20, 17, 50, 'OIP6.jpg', 1),
+(119, 'blue shoes', 'Shoes', 'female', 20, 17, 50, 'OIP7.jpg', 1),
+(120, 'green', 'Clothing', 'male', 20, 18, 50, 'OIP4.jpg', 1),
+(121, 'freshness', 'Others', 'female', 20, 17, 15, 'OIP.jpg', 1),
+(122, 'Black Bag', 'Bags', 'male', 50, 40, 20, 'OIP10.jpg', 1);
 
 --
 -- Indexes for dumped tables
@@ -186,6 +237,12 @@ ALTER TABLE `logins_registers`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `ordered`
+--
+ALTER TABLE `ordered`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -199,25 +256,31 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
 
 --
 -- AUTO_INCREMENT for table `logins_registers`
 --
 ALTER TABLE `logins_registers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+
+--
+-- AUTO_INCREMENT for table `ordered`
+--
+ALTER TABLE `ordered`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

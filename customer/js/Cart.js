@@ -74,17 +74,45 @@ $(document).ready(function(){
                         },
 
                     });
-                    window.location.href = "http://localhost/final1/f1/test_final_project/customer/filtering.php";
+                    window.location.href = "./filtering.php";
 
                     return false;
                
         });
 
+	//logout
+	function logout() {
+		$.ajax({
+			type: 'GET',
+			url: "../Utils/ws_utils.php",
+			dataType: 'json',
+			success: function () {
 
+			},
+			error: function (xhr, status, errorThrown) {
+				alert(status + errorThrown);
+			}
+		});
+	}
+	$(document).on('click', '.logout', function () {
+		logout();
+		window.location.href = "./index.php";
 
-
+	});
 	
-		
+	////hide login icon if user is logged in and show logout
+	$(document).ready(function () {
+		var userid = $('.userHiddenId').val();
+		// alert(userid);
+		if (userid == "") {
+			//  alert("no id"); 
+		} else {
+			$(".logindiv").hide();
+			$(".btn6").hide();
+			$(".btnregister").hide();
+			$(".logout").show();
+		}
+	});
 		
 function parseCart(data)
 	{		

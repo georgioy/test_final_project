@@ -1,14 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\admin",
+    "\\admin\\class",
     "\\admin\\js",
+    "\\admin\\ws",
     "\\customer",
     "\\customer\\class",
+    "\\customer\\css",
     "\\customer\\js",
     "\\customer\\ws",
     "\\Utils"
   ],
-  "SelectedNode": "\\customer\\js\\Cart.js",
+  "SelectedNode": "\\customer\\css\\Cart.css",
   "PreviewInSolutionExplorer": false
 }

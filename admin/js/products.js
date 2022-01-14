@@ -174,8 +174,11 @@ $(document).ready(function () {
         $('#Update_product').show();
         $('#cancel_p').show();
         $('#submit_product').hide();
+        $(".modal-title").text("Update Product");
     });
-
+    $(document).on('click', '#add_modal', function () {
+        $(".modal-title").text("Add New Product");
+    });
 
     //function edit data from ws/////////////////
     function editproduct(id) {

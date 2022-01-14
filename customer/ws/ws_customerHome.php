@@ -62,7 +62,7 @@
                 //go to category filter by cat id 
                 case 6:
                     {
-                          session_start();
+                         session_start();
                          $id=$_GET['catID'];
                          $_SESSION["catID"] = $id;
                          header("Content-type:application/json");

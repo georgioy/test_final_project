@@ -45,6 +45,25 @@ $(document).ready(function () {
 
     }
 
+    //logout
+    function logout() {
+        $.ajax({
+            type: 'GET',
+            url: "../Utils/ws_utils.php",
+            dataType: 'json',
+            success: function () {
+
+            },
+            error: function (xhr, status, errorThrown) {
+                alert(status + errorThrown);
+            }
+        });
+    }
+    $(document).on('click', '.logout', function () {
+        logout();
+        location.reload();
+
+    });
 
 
 
@@ -54,7 +73,7 @@ $(document).ready(function () {
          $(document).on('click', '.dropdownCat', function(){
             
             var id = $(this).attr("id");
-         //  alert(id);
+          //alert(id);
             var dropValue = $(this).text().trim();
             selecteddrop = dropValue;
             
@@ -68,7 +87,7 @@ $(document).ready(function () {
                         },
 
                     });
-                    window.location.href = "http://localhost/final1/f1/test_final_project/customer/filtering.php";
+             window.location.href = "./filtering.php";
 
                     return false;
                
@@ -327,10 +346,6 @@ $(document).ready(function(){
  
 
         var userid = $('.userHiddenId').val();
-<<<<<<< HEAD
-=======
-      //  alert(userid);
->>>>>>> 9747e8a25ee46e5bb82519495da92114f49c7abd
         if (userid == "") {
             $('.userHiddenId').val() = '';
              window.location.href = "../login&register/Login.php";
@@ -375,7 +390,7 @@ $(document).ready(function(){
             },
     
         });
-       window.location.href = "http://localhost/final1/f1/test_final_project/customer/filtering.php";
+       window.location.href = "./filtering.php";
 
         return false;
     
@@ -417,13 +432,14 @@ $(document).on('click', '.getcat', function(){
         },
 
     });
-    window.location.href = "http://localhost/final1/f1/test_final_project/customer/filtering.php";
+    window.location.href = "./filtering.php";
+
 
     return false;
 
 });
 
-
+var counter = 0;
     ////////////function to add cards to the cart when clicking add to card btns if logged in and show log in msg if not
     $(document).ready(function(){
         $(document).on('click', '.addtoArray', function(){
@@ -454,7 +470,16 @@ $(document).on('click', '.getcat', function(){
                         },
         
                     });
-                }
+            }
+
+            counter += 1;
+            if (counter > 0) {
+                $(".badge").text(counter);
+            }
+
+
+
+
             return false;
         });
      

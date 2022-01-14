@@ -33,7 +33,6 @@ require_once("../class/Customer_Home.class.php");
                     header("Content-type:application/json");
             
                     echo json_encode($result); 
-                    session_destroy();
                     
             
                 break;
@@ -47,7 +46,6 @@ require_once("../class/Customer_Home.class.php");
                     if($salesOrAll == "allProducts"){
                         $result = $filtering->newArrivals();  
                         echo json_encode($result);
-                        session_destroy();
                     }
             
                 break;

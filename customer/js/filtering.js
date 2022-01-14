@@ -46,7 +46,25 @@
             });
 
         }
+        //logout
+        function logout() {
+            $.ajax({
+                type: 'GET',
+                url: "../Utils/ws_utils.php",
+                dataType: 'json',
+                success: function () {
 
+                },
+                error: function (xhr, status, errorThrown) {
+                    alert(status + errorThrown);
+                }
+            });
+        }
+        $(document).on('click', '.logout', function () {
+            logout();
+            window.location.href = "./index.php";
+
+        });
 
         ////////////////////////cat drop down redirect to filtering////////////////////////
         $(document).on('click', '.dropdownCat', function(){
@@ -66,7 +84,7 @@
                         },
 
                     });
-                  //  window.location.href = "http://localhost/f1/test_final_project/customer/filtering.php";
+                  //  window.location.href = "./filtering.php";
 
                 }else if(dropValue == "All products"){
             
@@ -93,7 +111,7 @@
                         },
 
                     });
-                    window.location.href = "http://localhost/final1/f1/test_final_project/customer/filtering.php";
+                    window.location.href = "./filtering.php";
 
                     return false;
                 }
@@ -529,7 +547,7 @@ $(document).ready(function(){
             $(".logout").show();
         }  
     });
-
+var counter = 0
      ////////////function to add cards to the cart when clicking add to card btns if logged in and show log in msg if not
      $(document).ready(function(){
         $(document).on('click', '.addtoArray', function(){
@@ -557,7 +575,11 @@ $(document).ready(function(){
                         },
         
                     });
-                }
+            }
+            counter += 1;
+            if (counter > 0) {
+                $(".badge").text(counter);
+            }
             return false;
         });
      

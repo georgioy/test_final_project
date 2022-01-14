@@ -63,7 +63,7 @@ require_once("../Utils/utils.php");
                             <div class="cartdiv">
                                 <i class="fas fa-shopping-cart " id="cartimg"></i>    
                                 <a href="#" class="cart_link link"  >Cart</a>
-                                <!-- href="cart.php"  -->
+                                <span class="badge"></span>
                                 <input type='hidden' class="cartUid" id=""  />
                             </div>
 

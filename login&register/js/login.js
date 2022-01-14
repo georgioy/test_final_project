@@ -1,4 +1,25 @@
 $(document).ready(function () {
+    $(document).on('click', '.dropdownCat', function () {
+
+        var id = $(this).attr("id");
+        var dropValue = $(this).text().trim();
+        selecteddrop = dropValue;
+
+        var op = 6;
+        $.ajax({
+            type: 'GET',
+            url: "../customer/ws/ws_customerHome.php",
+            dataType: 'json',
+            data: { op: op, catID: id },
+            success: function (response) {
+            },
+
+        });
+        window.location.href = "../customer/filtering.php";
+
+        return false;
+
+    });
 
 
     //button submit form validation//////////////
@@ -53,20 +74,7 @@ $(document).ready(function () {
     }
 
 
-    //get user list from server
-    function logout() {
-        $.ajax({
-            type: 'GET',
-            url: "../Utils/ws_utils.php",
-            dataType: 'json',
-            success: function () {
 
-            },
-            error: function (xhr, status, errorThrown) {
-                alert(status + errorThrown);
-            }
-        });
-    }
 
 
     getCatToDropDown();
@@ -77,7 +85,7 @@ $(document).ready(function () {
 
 
         $.each(data, function (index, row) {
-            var name = $(".dropdown-content").innerHTML = "<a href=''  id='Filter_" + row.cat_id + "'> " + row.cat_name + "</a>";
+            var name = $(".dropdown-content").innerHTML = "<a href='' class='dropdownCat'  id='" + row.cat_id + "'> " + row.cat_name + "</a>";
             $(".dropdown-content").append(name);
         });
 

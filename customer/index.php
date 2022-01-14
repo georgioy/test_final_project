@@ -53,10 +53,12 @@
                     </div>
 
                     <div class="cartdiv">
-                        <i class="fas fa-shopping-cart " id="cartimg"></i>    
-                        <a href="cart.php"  class="cart_link link"  >Cart</a>
+                            <i class="fas fa-shopping-cart " id="cartimg"></i>    
+                            <a href="cart.php"  class="cart_link link"  >Cart</a>
+                            <span class="badge"></span>
                         <input type='hidden' class="cartUid" id=""  />
                     </div>
+                    
 
                 </div>  
             </div>
