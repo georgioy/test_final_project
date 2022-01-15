@@ -42,7 +42,7 @@ checkSessionAdmin();
                     <ul class="mt5">
                         <li><a href="Customers.php">CUSTOMERS</a></li>
                         <li><a href="#">ORDERED</a></li>
-                        <li><a href="#">STATISTICS</a></li>
+                        <li><a href="Statistics.php"#"">STATISTICS</a></li>
                         <li><a href="logins_register.php">LOGIN REGISTER</a></li>
                         <li><a href="..\login&register\Login.php">LOGOUT</a></li>
                     </ul>
@@ -162,7 +162,7 @@ checkSessionAdmin();
         }
 
         $('.fa-thumbs-down').hide();
-                    //$('.fa-thumbs-down').show();
+                    
 
 
     </script>

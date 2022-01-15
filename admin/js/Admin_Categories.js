@@ -87,7 +87,8 @@ $(document).ready(function(){
 				  else{
 					 
 				    data = JSON.parse(xhr.responseText);					
-					
+					  
+					    
 					  parseCat(data);
 				
 				  }
