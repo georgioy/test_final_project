@@ -96,6 +96,7 @@ $(document).ready(function(){
 	
 	function GetSaledItems()
 	{
+		alert("hi");
 		var op = 1;
 		$.ajax({
 			type:'Get',

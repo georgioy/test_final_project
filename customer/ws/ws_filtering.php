@@ -8,10 +8,11 @@ require_once("../class/Customer_Home.class.php");
     if(isset($_GET['op'])){
         $op = $_GET['op'];
     }
+    session_start();
 
         switch($op){
             case 1:
-                    session_start();
+                   // session_start();
                     $salesOrAll =  $_SESSION["sales"];
                     header("Content-type:application/json");
             
@@ -26,47 +27,76 @@ require_once("../class/Customer_Home.class.php");
 
             
               case 2:
-                    session_start();
+                   // session_start();
                     $catID =  $_SESSION["catID"];
                     $catname = $filtering->getCategoryNameById($catID);  
                     $result = $filtering->getCategoryItems($catname[0]['cat_name']);
                     header("Content-type:application/json");
             
                     echo json_encode($result); 
-                    session_destroy();
-                    
+                   // session_destroy();
+                     session_unset();
             
                 break;
 
 
               case 3:
-                    session_start();
+                   // session_start();
                     $salesOrAll =  $_SESSION["sales"];
                     header("Content-type:application/json");
                 
                     if($salesOrAll == "allProducts"){
                         $result = $filtering->newArrivals();  
                         echo json_encode($result);
-                        session_destroy();
+                       // session_destroy();
+                       //session_unset();
+
                     }
             
                 break;
 
               case 4:
                     $gender = $_GET['gender'];
-                    $result = $filtering->getByGender($gender);  
+                    $catname = $_GET['catName'];
+                    $result = $filtering->getByGender($gender, $catname);  
                     echo json_encode($result);
+
 
                     break;
 
                 case 5:
                     $firstprice = $_GET['firstPrange'];
                     $secondprice = $_GET['secondPrange'];
+                    $catname = $_GET['catname'];
 
-                    $result = $filtering->getByPriceRange($firstprice, $secondprice);  
+                    $result = $filtering->getByPriceRange($firstprice, $secondprice,  $catname);  
                     echo json_encode($result);
     
                     break;
+
+                    case 6:
+                        $gender = $_GET['gender'];
+                        $saleORallproducts = $_GET['saleORallproducts'];
+                        $result = $filtering->getSorPByGender($gender, $saleORallproducts);  
+                        echo json_encode($result);
+    
+                        break;
+
+                        case 7:
+                            $firstprice = $_GET['firstPrange'];
+                            $secondprice = $_GET['secondPrange'];
+                            $saleORallproducts = $_GET['saleORallproducts'];
+                            $result = $filtering->getSorPByRange($firstprice, $secondprice, $saleORallproducts);  
+                            echo json_encode($result);
+            
+                            break;
+
+                            case 8:
+                                
+                                    $result = $filtering->getAllSales();
+                                    echo json_encode($result);
+                                    break;
+                                
 
             default:
               break;
@@ -76,31 +106,31 @@ require_once("../class/Customer_Home.class.php");
 
 
 // checkSession();
-function checkSession()
-{
-    session_start();
-     if(isset($_SESSION["catID"]))
-		{
-			$catid=$_SESSION["catID"];
-			//header("Location:https:www.edureka.co/");
+// function checkSession()
+// {
+//     session_start();
+//      if(isset($_SESSION["catID"]))
+// 		{
+// 			$catid=$_SESSION["catID"];
+// 			//header("Location:https:www.edureka.co/");
 			
-		//	echo "categoryid=$catid";
-		}
-		else
-		echo("no cat id");
+// 		//	echo "categoryid=$catid";
+// 		}
+// 		else
+// 		echo("no cat id");
 
         
-        if(isset($_SESSION["sales"]))
-		{
-			$Uid=$_SESSION["sales"];
-			//$uname=$_SESSION["uname"];
-			//header("Location:https:www.edureka.co/");
-			//echo "sale=$Uid";
-		}
-		else
-		echo("no sales ");
+//         if(isset($_SESSION["sales"]))
+// 		{
+// 			$Uid=$_SESSION["sales"];
+// 			//$uname=$_SESSION["uname"];
+// 			//header("Location:https:www.edureka.co/");
+// 			//echo "sale=$Uid";
+// 		}
+// 		else
+// 		echo("no sales ");
 
-    }
+//     }
  
 
 
