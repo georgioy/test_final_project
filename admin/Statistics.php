@@ -1,25 +1,15 @@
-<?php
-
-require("../Utils/utils.php");
-
-checkSessionAdmin();
-
-?>
-
-
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>View Order</title>
+    <title>Statistics</title>
     <link rel="stylesheet" href="../fontawesome-free-5.15.4-web/css/all.css">
-    <link href="css\view_order.css" rel="stylesheet" type="text/css">
+    <link href="css/categories.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="..\bootstrap\css\bootstrap.min.css" />
     <script src="..\bootstrap\ajax\jquery.min.js"></script>
     <script src="..\bootstrap\js\bootstrap.min.js"></script>
-    <script src="js\view_order.js"></script>
-
+    <script src="js/Statistics.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 </head>
 <body>
     <!-- navbar -->
@@ -58,55 +48,30 @@ checkSessionAdmin();
     </div>
     <!-- title -->
     <div class="title-text">
-        <h1>View Order</h1>
+        <h1>Statistics</h1>
     </div>
-     <!-- Customer information -->
-    
-     <h4 class="ml-3">Customer Information</h4>
-    <div id="Customer_info" class="mb-5">
-    <div class="ml-3" id="i_username"></div>
-    <div class="ml-3"  id="i_Phone"></div>
-    <div class="ml-3"  id="i_email"></div>
-    <div class="ml-3"  id="i_address"></div>
-     
-     
-     
-     </div>
-    <!-- table -->
-    <div class="col">
-        <table class="table table-hover table-bordered mt-2  mr-3 " border="0" id="table">
-            <thead>
-                <tr>
-                    <th scope="col">Product Image</th>
-                    <th scope="col">Product Name</th>
-                    <th scope="col">Product Category</th>
-                    <th scope="col">Product Gender</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Total Price</th>
-                 </tr>
-            </thead>
-            <tbody id="orderestable">
-            
-            </tbody>
-        </table>
-    </div>
-    <div id="control_order">
-     <div id="total"></div> 
-     <input type="button" id="reject" class="btn btn-danger"  value="Reject Order">
-     <input type="button" id="accept" class="btn btn-success"  value="Accept Order">
 
-    
+	
+	<!-- charts -->
+	
+	<canvas id="myChart" style="width:100%;max-width:600px; position:relative; left:10%; display: inline-block"></canvas>
+	<canvas id="myPieChart" style="width:100%;max-width:400px; position:relative; left:20%; display: inline-block   "></canvas>
+	<br><br><br><br>
+	<canvas id="linechart" style="width:100%;max-width:770px; position:relative; left:16%;"></canvas>
+	
+	
+	<br><br>
+	
+	
+	
+ <script>
 
-    
-    </div>
-        <script>
-        //side navbar
         var menubtn = document.getElementById("menubtn")
         var sideNav = document.getElementById("sideNav")
         var menu = document.getElementById("menu")
-        
+
         sideNav.style.right = "-250px";
-        //hide and show image close and menu in navbar
+
         menubtn.onclick = function () {
             if (sideNav.style.right == "-250px") {
                 sideNav.style.right = "0";
@@ -116,7 +81,10 @@ checkSessionAdmin();
                 sideNav.style.right = "-250px";
                 menu.src = "../img/menu.png";
             }
-        }  
+        }
+
+        $('.fa-thumbs-down').hide();
+                    //$('.fa-thumbs-down').show();
 
 
     </script>

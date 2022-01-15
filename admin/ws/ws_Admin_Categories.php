@@ -35,11 +35,11 @@
 			$row_id=$_GET["rowid"];
 			$name=$_GET["name"];
 			$image=$_GET["image"];
-	 	 //   $status=$_GET["status"];
+	 	 
 			 
 			$cat = new Admin_Categories();
 
-            $result=$cat->EditCat($row_id,$image,$name);//,$status);
+            $result=$cat->EditCat($row_id,$image,$name);
 			 break;
 		 }
 	 case 4:
@@ -83,6 +83,15 @@
 			 $result=$cat->CheckIfCategoryHasItems($catname);
 			 
 			 break;
+		 }
+	 case 8:
+		 {
+			  $cat = new Admin_Categories() ;
+			 
+			 $result=$cat->GetSaledItems();
+			 
+			 break;
+			 
 		 }
 		 
 		 
