@@ -128,13 +128,14 @@ $(document).ready(function () {
        $(".newArrivals").empty();
         check = gendervalue;
        // alert(gendervalue);
- 
+       var TextInsideCustomP = document.getElementById('custP').innerHTML;
+
       var op=4;
       $.ajax({
           type: 'GET',
           url: "./ws/ws_filtering.php",
           dataType: 'json',
-          data: {op: op, gender:gendervalue},
+          data: {op: op, gender:gendervalue, catName:TextInsideCustomP},
           success: function (response) {
               if (response == -1)
                   alert("Data couldn't be loaded!");
@@ -146,6 +147,40 @@ $(document).ready(function () {
             //  alert(status + errorThrown);
           }
       });
+
+
+      
+       ///////get sales or other products filtered by gender
+       if(TextInsideCustomP == "SALES" || "ALL PRODUCTS"){
+        //  alert("sales OR P it is" + TextInsideCustomP);
+
+          var op=6;
+          $.ajax({
+              type: 'GET',
+              url: "./ws/ws_filtering.php",
+              dataType: 'json',
+              data: {op: op, gender:gendervalue, saleORallproducts: TextInsideCustomP},
+              success: function (response) {
+                  if (response == -1)
+                      alert("Data couldn't be loaded!");
+                  else {
+                      if(TextInsideCustomP == "SALES"){
+                        parseSales(response);
+                        // alert("SSSS");
+                      }else if(TextInsideCustomP == "ALL PRODUCTS"){
+                         parseNew(response);
+                      }
+                    
+                      
+                  }
+              },
+              error: function (xhr, status, errorThrown) {
+                  //  alert(status + errorThrown);
+              }
+          });
+
+  }
+
      });
 
 
@@ -153,7 +188,7 @@ $(document).ready(function () {
         var len = response.length;
        $(".newArrivals").empty();
        $(".mycontainer").empty();
-       document.getElementById("custP").innerHTML = "ALL PRODUCTS " ;
+       document.getElementById("custP").innerHTML =  (response[0].product_category).toUpperCase() ;
     
         var container = document.querySelector(".newArrivals");
     
@@ -215,6 +250,8 @@ $(document).ready(function () {
           var priceVal = $(this).val().trim();
            $(".mycontainer").empty();
            $(".newArrivals").empty();
+           var TextInsideCustomP = document.getElementById('custP').innerHTML;
+
     
             var beforeT=priceVal.indexOf("to");
             var firstPrange =   priceVal.substring(0, beforeT);
@@ -226,7 +263,7 @@ $(document).ready(function () {
                     type: 'GET',
                     url: "./ws/ws_filtering.php",
                     dataType: 'json',
-                    data: {op: op, firstPrange : firstPrange, secondPrange : secondPrange},
+                    data: {op: op, firstPrange : firstPrange, secondPrange : secondPrange, catname:TextInsideCustomP},
                     success: function (response) {
                         if (response == -1)
                             alert("Data couldn't be loaded!");
@@ -238,6 +275,38 @@ $(document).ready(function () {
                           alert(status + errorThrown);
                     }
                 });
+
+                            ///////get sales or other products filtered by price
+        if(TextInsideCustomP == "SALES" || "ALL PRODUCTS"){
+            //  alert("sales OR P it is" + TextInsideCustomP);
+  
+              var op=7;
+              $.ajax({
+                  type: 'GET',
+                  url: "./ws/ws_filtering.php",
+                  dataType: 'json',
+                  data: {op: op, firstPrange : firstPrange, secondPrange : secondPrange, saleORallproducts: TextInsideCustomP},
+                  success: function (response) {
+                      if (response == -1)
+                          alert("Data couldn't be loaded!");
+                      else {
+                          if(TextInsideCustomP == "SALES"){
+                            parseSales(response);
+                            // alert("SSSS");
+                          }else if(TextInsideCustomP == "ALL PRODUCTS"){
+                             parseNew(response);
+                          }
+                        
+                          
+                      }
+                  },
+                  error: function (xhr, status, errorThrown) {
+                      //  alert(status + errorThrown);
+                  }
+              });
+  
+      }
+      
     });
 
 
@@ -246,7 +315,7 @@ $(document).ready(function () {
 
        $(".newArrivals").empty();
        $(".mycontainer").empty();
-       document.getElementById("custP").innerHTML = "ALL PRODUCTS ";
+       document.getElementById("custP").innerHTML = (response[0].product_category).toUpperCase();
     
         var container = document.querySelector(".newArrivals");
 
@@ -330,64 +399,64 @@ $(document).ready(function(){
         });
     }
     
-    function parseNew(response){
-        var len = response.length;
-       $(".newArrivals").empty();
-       $(".mycontainer").empty();
-       document.getElementById("custP").innerHTML = "ALL PRODUCTS";
-
-        var container = document.querySelector(".newArrivals");
-
-
-        for(var i=0; i<len; i++){
-            var id = response[i].id;
-            var product_name = response[i].product_name;
-            var product_category = response[i].product_category;
-            var product_price = response[i].product_price;
-            var product_final_price = response[i].product_final_price;
-            var product_image = response[i].product_image;
-            var product_quantity = response[i].product_quantity;
-            var product_gender = response[i].product_gender;
-
-            var Pimage = '<a href="#" class="image"  style="width:200px; height:200px; margin-left:50px;"' + '>';
-            Pimage += '<img src="../product_image/'    +  product_image + '"' ; 
-            Pimage += '/>';
-            Pimage += '</a>'
-
-            
-            var addToCart = '<a  id="'+id+'" href="" class="addarrival addtoArray add-to-cart" >';
-            addToCart += 'Add To Cart';
-            addToCart += '</a>';
-            
-            var productName = '<h3 class="title" > ';
-            productName += '<a href="" >' + product_name + '</a>';
-            productName += '</h3>';
-
-            var Productprice =  '<div class="price" > ' + product_price + '$' + '</div>'; 
- 
-            
-      
-             container.innerHTML += '<div  class="col-md-3 col-sm-6" style="padding:20px;"><div class="product-grid">'+
-            '<div class="product-image" >' + Pimage + addToCart + '</div>' + 
-            '<div class="product-content" >' +  productName + Productprice + '</div> '
-              +'</div></div>';
- 
-         } 
-
-     }
+   
 
 });
 
+function parseNew(response){
+    var len = response.length;
+   $(".newArrivals").empty();
+   $(".mycontainer").empty();
+   document.getElementById("custP").innerHTML = "ALL PRODUCTS";
 
+    var container = document.querySelector(".newArrivals");
+
+
+    for(var i=0; i<len; i++){
+        var id = response[i].id;
+        var product_name = response[i].product_name;
+        var product_category = response[i].product_category;
+        var product_price = response[i].product_price;
+        var product_final_price = response[i].product_final_price;
+        var product_image = response[i].product_image;
+        var product_quantity = response[i].product_quantity;
+        var product_gender = response[i].product_gender;
+
+        var Pimage = '<a href="#" class="image"  style="width:200px; height:200px; margin-left:50px;"' + '>';
+        Pimage += '<img src="../product_image/'    +  product_image + '"' ; 
+        Pimage += '/>';
+        Pimage += '</a>'
+
+        
+        var addToCart = '<a  id="'+id+'" href="" class="addarrival addtoArray add-to-cart" >';
+        addToCart += 'Add To Cart';
+        addToCart += '</a>';
+        
+        var productName = '<h3 class="title" > ';
+        productName += '<a href="" >' + product_name + '</a>';
+        productName += '</h3>';
+
+        var Productprice =  '<div class="price" > ' + product_price + '$' + '</div>'; 
+
+        
+  
+         container.innerHTML += '<div  class="col-md-3 col-sm-6" style="padding:20px;"><div class="product-grid">'+
+        '<div class="product-image" >' + Pimage + addToCart + '</div>' + 
+        '<div class="product-content" >' +  productName + Productprice + '</div> '
+          +'</div></div>';
+
+     } 
+
+ }
 
     getSales();
     ////get all sales function
         function getSales(){
     
-            var op=1;
+            var op=8;
             $.ajax({
                 type: 'GET',
-                url: "./ws/ws_customerHome.php",
+                url: "./ws/ws_filtering.php",
                 dataType: 'json',
                 data: {op: op},
                 success: function (response) {
@@ -480,7 +549,6 @@ $(document).ready(function(){
             var len = response.length;
             $(".newArrivals").empty();
             $(".mycontainer").empty();
-        
             document.getElementById("custP").innerHTML = (response[0].product_category).toUpperCase();
     
             var container = document.querySelector(".newArrivals");
@@ -494,6 +562,7 @@ $(document).ready(function(){
                 var product_image = response[i].product_image;
                 var product_quantity = response[i].product_quantity;
                 var product_gender = response[i].product_gender;
+              //  alert(response.length());
 
             
                 var Pimage = '<a href="#" class="image"  style="width:200px; height:200px; margin-left:50px;"' + '>';
@@ -510,12 +579,26 @@ $(document).ready(function(){
                 productName += '<a href="" >' + product_name + '</a>';
                 productName += '</h3>';
 
-                var Productprice =  '<div class="price" > ' + product_price + '$' + '</div>'; 
+                var Productprice =  '<div class="price" > ' + product_final_price + '$' + '</div>'; 
     
-                container.innerHTML += '<div  class="col-md-3 col-sm-6" style="padding:20px;"><div class="product-grid">'+
-                '<div class="product-image" >' + Pimage + addToCart + '</div>' + 
-                '<div class="product-content" >' +  productName + Productprice + '</div> '
-                +'</div></div>';
+                var ProductOldprice =  '<div class="small text-danger" > ' 
+                ProductOldprice += '<s>' ;
+                ProductOldprice +=  product_price + '$';
+                ProductOldprice += '</s>' + '</div>'; 
+
+                var extraspace = '<div style="height:21px;"></div>';
+
+                if(product_price == product_final_price){ 
+                    container.innerHTML += '<div  class="col-md-3 col-sm-6" style="padding:20px;"><div class="product-grid">'+
+                    '<div class="product-image" >' + Pimage + addToCart + '</div>' + 
+                    '<div class="product-content" >' +  productName + extraspace   + Productprice + '</div> '
+                        +'</div></div>';
+                    }else{ 
+                        container.innerHTML += '<div  class="col-md-3 col-sm-6" style="padding:20px;"><div class="product-grid">'+
+                    '<div class="product-image" >' + Pimage + addToCart + '</div>' + 
+                    '<div class="product-content" >' +  productName + ProductOldprice + Productprice + '</div> '
+                        +'</div></div>'; 
+                    }
             
             } 
         }
